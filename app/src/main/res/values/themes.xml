@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Parking" parent="Base.Theme.Parking" />
+
+    <style name="Theme.AppCompat.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/pomegranate</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_park_me_logo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Parking</item>
+    </style>
 </resources>
