@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Parking</string>
+
+    <!--    Welcome screen-->
+    <string name="welcome_create_account_action">Create Account</string>
+    <string name="welcome_sing_in_action">Sing In</string>
+
+    <!--    View's description-->
+    <string name="welcome_gif_description">Parking animated picture</string>
+
 </resources>
