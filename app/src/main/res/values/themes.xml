@@ -1,11 +1,16 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.Parking" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/pomegranate</item>
+        <item name="colorPrimaryDark">@color/white</item>
     </style>
 
-    <style name="Theme.Parking" parent="Base.Theme.Parking" />
+    <style name="Theme.Parking" parent="Base.Theme.Parking">
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
 
     <style name="Theme.AppCompat.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/pomegranate</item>
