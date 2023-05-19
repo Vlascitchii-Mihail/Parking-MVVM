@@ -1,21 +1,21 @@
 <resources>
     <string name="app_name">Parking</string>
 
-    <!--    Welcome screen-->
-    <string name="welcome_create_account_action">Create Account</string>
-    <string name="welcome_sing_in_action">Sing In</string>
-
-    <!--    View's description-->
-    <string name="welcome_gif_description">Parking animated picture</string>
-
     <!--    Generics-->
     <string name="generic_email_hint">eg. example@email.com</string>
     <string name="generic_email_label">Email</string>
     <string name="generic_password_label">Password</string>
     <string name="generic_password_hint">Password</string>
     <string name="generic_confirm_action">Confirm</string>
+    <string name="generic_terms_conditions">By proceeding you agree\nto our Terms and Conditions</string>
+    <string name="generic_terms_conditions_phrase">Terms and Conditions</string>
 
-    <string name="auth_terms_message"><![CDATA[By proceeding you agree <br/> to our  <a href="###"><b>Terms and Conditions</b></a>]]></string>
+    <!--    WelcomeFragment screen-->
+    <string name="welcome_create_account_action">Create Account</string>
+    <string name="welcome_sing_in_action">Sing In</string>
+
+    <!--    View's description-->
+    <string name="welcome_gif_description">Parking animated picture</string>
 
     <!--    Sign Up screen-->
     <string name="signup_title">Create An Account</string>
@@ -23,4 +23,7 @@
     <string name="signup_name_hint">eg.John</string>
     <string name="signup_phone_label">Phone</string>
     <string name="signup_phone_hint">079123123</string>
+
+    <!--    SignInScreen-->
+    <string name="sign_in_forgot_pass_action">Forgot password</string>
 </resources>

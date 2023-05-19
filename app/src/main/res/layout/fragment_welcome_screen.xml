@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.WelcomeScreenFragment">
+    tools:context=".ui.welcomescreen.WelcomeFragment">
 
     <ImageView
         android:id="@+id/image_parking_gif"
@@ -19,9 +19,8 @@
         tools:src="@tools:sample/avatars"
         android:contentDescription="@string/welcome_gif_description" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_create_account"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_margin="@dimen/margin_medium"
         android:text="@string/welcome_create_account_action"
@@ -30,9 +29,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_in"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_margin="@dimen/margin_medium"
         android:text="@string/welcome_sing_in_action"
