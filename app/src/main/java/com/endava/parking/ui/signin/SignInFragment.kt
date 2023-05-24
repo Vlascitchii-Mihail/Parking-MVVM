@@ -16,6 +16,7 @@ class SignInFragment : BaseViewBindingFragment<FragmentSignInScreenBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         setupView()
+        setupNavigation()
     }
 
     private fun setupView() = with(binding) {
@@ -32,5 +33,24 @@ class SignInFragment : BaseViewBindingFragment<FragmentSignInScreenBinding>(
                 ).show()
             }
         )
+
+        setupToolbarNavigation()
+    }
+
+    private fun setupNavigation() = with(binding) {
+        tvForgotPassword.setOnClickListener {
+            //todo: navigate to ForgotPasswordFragment
+        // navigationCallback.navigate(ForgotPasswordFragment(), TAG)
+        }
+    }
+
+    private fun setupToolbarNavigation() {
+        binding.toolbar.setNavigationOnClickListener {
+            navigationCallback.popBackStack()
+        }
+    }
+
+    companion object {
+        const val TAG = "SignInFragment"
     }
 }

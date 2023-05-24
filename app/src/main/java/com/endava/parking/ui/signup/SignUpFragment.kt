@@ -49,6 +49,14 @@ class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(
                 ).show()
             }
         )
+
+        setupToolbarNavigation()
+    }
+
+    private fun setupToolbarNavigation() {
+        binding.toolbar.setNavigationOnClickListener {
+            navigationCallback.popBackStack()
+        }
     }
 
     override fun setButtonAvailability(isEnable: Boolean) {
@@ -61,4 +69,8 @@ class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(
         binding.inputPassword.text.toString(),
         binding.inputPhone.text.toString()
     )
+
+    companion object {
+        const val TAG = "SignUpFragment"
+    }
 }
