@@ -26,4 +26,9 @@
 
     <!--    SignInScreen-->
     <string name="sign_in_forgot_pass_action">Forgot password</string>
+
+    <!--    Forgot Password Screen-->
+    <string name="forgot_title">Restore Password</string>
+    <string name="forgot_action">Submit</string>
+    <string name="forgot_password_instruction">Please enter the email that you originally registered your  account with. You will receive an email with instructions on how you can change your password.</string>
 </resources>
