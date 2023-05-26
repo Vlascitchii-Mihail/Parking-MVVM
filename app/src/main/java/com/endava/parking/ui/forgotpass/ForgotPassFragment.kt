@@ -16,6 +16,7 @@ class ForgotPassFragment : BaseViewBindingFragment<FragmentForgotPasswordBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupViews()
+        setupToolbarNavigation()
     }
 
     private fun setupViews() = with(binding) {
@@ -26,5 +27,15 @@ class ForgotPassFragment : BaseViewBindingFragment<FragmentForgotPasswordBinding
 
     override fun setButtonAvailability(isEnable: Boolean) {
         binding.btnConfirm.isEnabled = isEnable
+    }
+
+    private fun setupToolbarNavigation() {
+        binding.toolbar.setNavigationOnClickListener {
+            navigationCallback.popBackStack()
+        }
+    }
+
+    companion object {
+        const val TAG = "ForgotPassFragment"
     }
 }
