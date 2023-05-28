@@ -15,9 +15,9 @@ class SignUpPresenter(
     override fun checkUserValidation(user: User) =
         view.setButtonAvailability(
             nameValidator.validate(user.name) &&
-            emailValidator.validate(user.email) &&
-            passwordValidator.validate(user.password) &&
-            phoneValidator.validate(user.phone)
+                emailValidator.validate(user.email) &&
+                passwordValidator.validate(user.password) &&
+                phoneValidator.validate(user.phone)
         )
 
     fun setNextFocus(user: User) {

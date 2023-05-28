@@ -11,8 +11,7 @@ class SignInPresenter(
 
     override fun checkUserValidation(email: String, password: String) {
         view.setButtonAvailability(
-            emailValidator.validate(email) &&
-            passwordValidator.validate(password)
+            emailValidator.validate(email) && passwordValidator.validate(password)
         )
     }
 

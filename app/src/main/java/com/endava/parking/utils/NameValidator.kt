@@ -11,8 +11,8 @@ class NameValidator : Validator {
     override fun validate(name: CharSequence): Boolean {
         val pattern = Pattern.compile(NAME_REGEX)
         val matcher = pattern.matcher(name)
-        return matcher.matches()
-                && name.length >= MIN_NAME_LENGTH
-                && name.length <= MAX_NAME_LENGTH
+        return matcher.matches() &&
+            name.length >= MIN_NAME_LENGTH &&
+            name.length <= MAX_NAME_LENGTH
     }
 }
