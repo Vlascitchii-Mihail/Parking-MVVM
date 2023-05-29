@@ -37,6 +37,6 @@
     <!--    Validation, error messages-->
     <string name="error_message_name">Name should has between 3 and 20 symbols</string>
     <string name="error_message_email">Email doesn`t match the conditions</string>
-    <string name="error_message_password">Password doesn`t match the conditions</string>
+    <string name="error_message_password">At least 8 characters, capital and small letters</string>
     <string name="error_message_phone">Phone number wrong format</string>
 </resources>

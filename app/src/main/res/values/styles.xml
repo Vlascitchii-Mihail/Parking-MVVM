@@ -49,7 +49,7 @@
     <style name="Input.Primary">
         <item name="android:paddingHorizontal">@dimen/padding_medium</item>
         <!--    text color for big hints-->
-        <item name="android:textColorHint">@color/tint_example_hint</item>
+        <item name="android:textColorHint">@color/black_30</item>
         <!--    fontFamily for both small hint and big hint-->
         <item name="android:fontFamily">@font/mulish_400</item>
         <!--    textSize for both text and big hint-->

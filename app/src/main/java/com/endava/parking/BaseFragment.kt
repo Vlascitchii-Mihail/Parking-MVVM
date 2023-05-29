@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.endava.parking.ui.navigation.NavigationCallback
+import com.endava.parking.utils.KeyboardManager
 
 abstract class BaseFragment<VB : ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, bool: Boolean) -> VB
@@ -21,6 +22,8 @@ abstract class BaseFragment<VB : ViewBinding>(
     protected val navigationCallback: NavigationCallback
         get() = _navigationCallback as NavigationCallback
 
+    private var keyboardManager: KeyboardManager? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +31,11 @@ abstract class BaseFragment<VB : ViewBinding>(
     ): View? {
         _binding = bindingInflater.invoke(inflater, container, false)
         return binding.root
+    }
+
+    protected fun setOnKeyboardCloseListener(listener: () -> Unit) {
+        keyboardManager = KeyboardManager(binding.root)
+        keyboardManager?.setOnCloseActionListener(listener)
     }
 
     override fun onAttach(context: Context) {
@@ -38,6 +46,11 @@ abstract class BaseFragment<VB : ViewBinding>(
     override fun onDetach() {
         super.onDetach()
         _navigationCallback = null
+    }
+
+    override fun onStop() {
+        super.onStop()
+        keyboardManager?.unregister()
     }
 
     override fun onDestroyView() {
