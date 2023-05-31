@@ -33,6 +33,17 @@ android {
     buildFeatures {
         viewBinding true
     }
+    flavorDimensions 'datasource'
+    productFlavors {
+        live {
+            dimension = "datasource"
+            applicationIdSuffix ".live"
+        }
+        mock {
+            dimension = "datasource"
+            applicationIdSuffix ".mock"
+        }
+    }
 }
 
 dependencies {
