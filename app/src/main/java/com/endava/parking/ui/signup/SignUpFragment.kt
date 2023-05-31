@@ -2,6 +2,7 @@ package com.endava.parking.ui.signup
 
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.endava.parking.BaseViewBindingFragment
@@ -32,6 +33,38 @@ class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(
     }
 
     private fun setupView() = with(binding) {
+        inputName.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                presenter.validateField(InputTextType.NAME, inputName.text.toString())
+            }
+        }
+        inputEmail.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                presenter.validateField(InputTextType.EMAIL, inputEmail.text.toString())
+            }
+        }
+        inputPassword.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                presenter.validateField(InputTextType.PASSWORD, inputPassword.text.toString())
+            }
+        }
+        inputPhone.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                presenter.validateField(InputTextType.PHONE, inputPhone.text.toString())
+            }
+        }
+        inputPassword.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                inputPhone.requestFocus()
+            }
+            true
+        }
+        inputPhone.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                presenter.setNextFocus(getUser())
+            }
+            false
+        }
         inputName.addTextChangedListener { presenter.checkUserValidation(getUser()) }
         inputEmail.addTextChangedListener { presenter.checkUserValidation(getUser()) }
         inputPassword.addTextChangedListener { presenter.checkUserValidation(getUser()) }
@@ -51,6 +84,69 @@ class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(
         )
 
         setupToolbarNavigation()
+    }
+
+    override fun showErrorMessage(fieldType: InputTextType, errorMessageId: Int) {
+        with(binding) {
+            when (fieldType) {
+                InputTextType.NAME -> {
+                    inputNameLayout.isErrorEnabled = true
+                    inputNameLayout.error = resources.getString(errorMessageId)
+                }
+
+                InputTextType.EMAIL -> {
+                    inputEmailLayout.isErrorEnabled = true
+                    inputEmailLayout.error = resources.getString(errorMessageId)
+                }
+
+                InputTextType.PASSWORD -> {
+                    inputPasswordLayout.isErrorEnabled = true
+                    inputPasswordLayout.errorIconDrawable = null
+                    inputPasswordLayout.error = resources.getString(errorMessageId)
+                }
+
+                InputTextType.PHONE -> {
+                    inputPhoneLayout.isErrorEnabled = true
+                    inputPhoneLayout.error = resources.getString(errorMessageId)
+                }
+            }
+        }
+    }
+
+    override fun clearErrorMessage(fieldType: InputTextType) {
+        with(binding) {
+            when (fieldType) {
+                InputTextType.NAME -> {
+                    inputNameLayout.isErrorEnabled = false
+                    inputNameLayout.error = null
+                }
+
+                InputTextType.EMAIL -> {
+                    inputEmailLayout.isErrorEnabled = false
+                    inputEmailLayout.error = null
+                }
+
+                InputTextType.PASSWORD -> {
+                    inputPasswordLayout.isErrorEnabled = false
+                    inputPasswordLayout.error = null
+                }
+
+                InputTextType.PHONE -> {
+                    inputPhoneLayout.isErrorEnabled = false
+                    inputPhoneLayout.error = null
+                }
+            }
+        }
+        presenter.checkUserValidation(getUser())
+    }
+
+    override fun moveFocusTo(nextFocusedField: InputTextType?) {
+        when (nextFocusedField) {
+            InputTextType.NAME -> binding.inputName.requestFocus()
+            InputTextType.EMAIL -> binding.inputEmail.requestFocus()
+            InputTextType.PASSWORD -> binding.inputPassword.requestFocus()
+            else -> binding.btnConfirm.requestFocus()
+        }
     }
 
     private fun setupToolbarNavigation() {
