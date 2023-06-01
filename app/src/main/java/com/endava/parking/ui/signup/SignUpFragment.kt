@@ -15,11 +15,10 @@ import com.endava.parking.utils.NameValidator
 import com.endava.parking.utils.PasswordValidator
 import com.endava.parking.utils.PhoneValidator
 
-class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(
-    FragmentSignUpBinding::inflate
-), SignUpContract.View {
+class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate), SignUpContract.View {
 
-    private val presenter = SignUpPresenter(this,
+    private val presenter = SignUpPresenter(
+        this,
         NameValidator(),
         EmailValidator(),
         PasswordValidator(),

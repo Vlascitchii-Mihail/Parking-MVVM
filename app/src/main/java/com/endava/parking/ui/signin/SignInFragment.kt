@@ -12,9 +12,7 @@ import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.utils.EmailValidator
 import com.endava.parking.utils.PasswordValidator
 
-class SignInFragment : BaseViewBindingFragment<FragmentSignInBinding>(
-    FragmentSignInBinding::inflate
-), SignInContract.View {
+class SignInFragment : BaseViewBindingFragment<FragmentSignInBinding>(FragmentSignInBinding::inflate), SignInContract.View {
 
     private val presenter = SignInPresenter(
         this,
@@ -56,7 +54,7 @@ class SignInFragment : BaseViewBindingFragment<FragmentSignInBinding>(
 
     private fun setupNavigation() = with(binding) {
         tvForgotPassword.setOnClickListener {
-         navigationCallback.navigate(ForgotPassFragment(), ForgotPassFragment.TAG)
+            navigationCallback.navigate(ForgotPassFragment(), ForgotPassFragment.TAG)
         }
     }
 

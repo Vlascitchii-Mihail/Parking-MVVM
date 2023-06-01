@@ -5,7 +5,7 @@ import com.endava.parking.utils.Validator
 class ForgotPassPresenter(
     private val view: ForgotPassContract.View,
     private val emailValidator: Validator
-): ForgotPassContract.Presenter {
+) : ForgotPassContract.Presenter {
 
     override fun checkUserValidation(mail: String) {
         view.setButtonAvailability(emailValidator.validate(mail))
