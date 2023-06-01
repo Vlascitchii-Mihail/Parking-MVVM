@@ -84,6 +84,15 @@ class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(
         )
 
         setupToolbarNavigation()
+
+        //test code lets us know that the Submit button works
+        btnConfirm.setOnClickListener {
+            Toast.makeText(
+                requireContext(),
+                "Was pressed Submit button in Sign Up Fragment",
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     override fun showErrorMessage(fieldType: InputTextType, errorMessageId: Int) {

@@ -17,7 +17,7 @@ class WelcomeFragment : BaseViewBindingFragment<FragmentWelcomeScreenBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Glide.with(activity).load(R.drawable.parking).crossFade().into(binding.imageParkingGif)
+        Glide.with(requireActivity()).load(R.drawable.parking).into(binding.imageParkingGif)
         setupNavigation()
     }
 
@@ -28,9 +28,5 @@ class WelcomeFragment : BaseViewBindingFragment<FragmentWelcomeScreenBinding>(
 
         btnSignIn.setOnClickListener { click(SignInFragment(), SignInFragment.TAG) }
         btnCreateAccount.setOnClickListener { click(SignUpFragment(), SignUpFragment.TAG) }
-    }
-
-    companion object {
-        const val TAG = "WelcomeFragment"
     }
 }
