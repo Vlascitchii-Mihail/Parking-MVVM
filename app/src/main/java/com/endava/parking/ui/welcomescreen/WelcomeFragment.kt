@@ -4,13 +4,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.endava.parking.BaseViewBindingFragment
+import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.databinding.FragmentWelcomeScreenBinding
 import com.endava.parking.ui.signin.SignInFragment
 import com.endava.parking.ui.signup.SignUpFragment
 
-class WelcomeFragment : BaseViewBindingFragment<FragmentWelcomeScreenBinding>(
+class WelcomeFragment : BaseFragment<FragmentWelcomeScreenBinding>(
     FragmentWelcomeScreenBinding::inflate
 ) {
 
@@ -22,11 +22,15 @@ class WelcomeFragment : BaseViewBindingFragment<FragmentWelcomeScreenBinding>(
     }
 
     private fun setupNavigation() = with(binding) {
-        val click = { fragment: Fragment, tag: String ->
-            navigationCallback.navigate(fragment, tag)
+        val click = { fragment: Fragment, tag: String, stackName: String? ->
+            navigationCallback.navigate(fragment, tag, stackName)
         }
 
-        btnSignIn.setOnClickListener { click(SignInFragment(), SignInFragment.TAG) }
-        btnCreateAccount.setOnClickListener { click(SignUpFragment(), SignUpFragment.TAG) }
+        btnSignIn.setOnClickListener { click(SignInFragment(), SignInFragment.TAG, TAG) }
+        btnCreateAccount.setOnClickListener { click(SignUpFragment(), SignUpFragment.TAG, TAG) }
+    }
+
+    companion object {
+        const val TAG = "WelcomeFragment"
     }
 }

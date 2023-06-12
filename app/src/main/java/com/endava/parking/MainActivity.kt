@@ -14,14 +14,16 @@ class MainActivity : AppCompatActivity(), NavigationCallback {
         installSplashScreen()
         setContentView(R.layout.activity_main)
 
-        navigate(WelcomeFragment())
+        navigate(WelcomeFragment(), WelcomeFragment.TAG)
     }
 
-    override fun navigate(fragment: Fragment, stackName: String?) {
+    override fun navigate(fragment: Fragment, tag: String, stackName: String?) {
         with(supportFragmentManager.beginTransaction()) {
-            replace(R.id.nav_host, fragment)
-            if (stackName != null) addToBackStack(stackName)
-            commit()
+            if(supportFragmentManager.findFragmentByTag(tag) == null) {
+                replace(R.id.nav_host, fragment, tag)
+                stackName?.let { addToBackStack(it) }
+                commit()
+            }
         }
     }
 

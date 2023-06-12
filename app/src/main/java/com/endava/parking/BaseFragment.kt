@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.endava.parking.ui.navigation.NavigationCallback
 
-abstract class BaseViewBindingFragment<VB : ViewBinding>(
+abstract class BaseFragment<VB : ViewBinding>(
     private val bindingInflater: (inflater: LayoutInflater, container: ViewGroup?, bool: Boolean) -> VB
 ) : Fragment() {
 

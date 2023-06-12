@@ -66,11 +66,19 @@
         <item name="hintTextAppearance">@style/HintTextAppearance</item>
         <item name="boxStrokeColor">@color/tint_stroke_input</item>
         <item name="boxStrokeWidthFocused">@dimen/stroke_tiny</item>
+        <item name="errorTextAppearance">@style/InputError</item>
     </style>
 
     <!--    Text size for small hints-->
     <style name="HintTextAppearance" parent="TextAppearance.Design.Hint">
         <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+
+<!--    Input Error Message-->
+    <style name="InputError">
+        <item name="hintTextColor">@color/pomegranate</item>
+        <item name="boxStrokeColor">@color/pomegranate</item>
     </style>
 
 

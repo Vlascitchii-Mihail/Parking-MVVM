@@ -5,7 +5,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.endava.parking.BaseViewBindingFragment
+import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.data.User
 import com.endava.parking.databinding.FragmentSignUpBinding
@@ -15,7 +15,7 @@ import com.endava.parking.utils.NameValidator
 import com.endava.parking.utils.PasswordValidator
 import com.endava.parking.utils.PhoneValidator
 
-class SignUpFragment : BaseViewBindingFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate), SignUpContract.View {
+class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding::inflate), SignUpContract.View {
 
     private val presenter = SignUpPresenter(
         this,

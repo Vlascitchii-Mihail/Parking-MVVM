@@ -9,10 +9,12 @@
     <string name="generic_confirm_action">Confirm</string>
     <string name="generic_terms_conditions">By proceeding you agree\nto our Terms and Conditions</string>
     <string name="generic_terms_conditions_phrase">Terms and Conditions</string>
+    <string name="generic_email_error_message">Should contain username, @ and domain name</string>
+    <string name="generic_pass_error_message">Should contain letters and numbers min 7 signs</string>
 
     <!--    WelcomeFragment screen-->
     <string name="welcome_create_account_action">Create Account</string>
-    <string name="welcome_sing_in_action">Sing In</string>
+    <string name="welcome_sing_in_action">Sign In</string>
 
     <!--    View's description-->
     <string name="welcome_gif_description">Parking animated picture</string>

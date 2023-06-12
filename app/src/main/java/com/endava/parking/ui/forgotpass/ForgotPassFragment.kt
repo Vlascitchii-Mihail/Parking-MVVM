@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import com.endava.parking.BaseViewBindingFragment
+import com.endava.parking.BaseFragment
 import com.endava.parking.databinding.FragmentForgotPasswordBinding
 import com.endava.parking.utils.EmailValidator
 
-class ForgotPassFragment : BaseViewBindingFragment<FragmentForgotPasswordBinding>(FragmentForgotPasswordBinding::inflate), ForgotPassContract.View {
+class ForgotPassFragment : BaseFragment<FragmentForgotPasswordBinding>(FragmentForgotPasswordBinding::inflate), ForgotPassContract.View {
 
     private val presenter = ForgotPassPresenter(this, EmailValidator())
 
