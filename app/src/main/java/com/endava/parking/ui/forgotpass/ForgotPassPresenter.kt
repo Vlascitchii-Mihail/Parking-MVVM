@@ -1,5 +1,6 @@
 package com.endava.parking.ui.forgotpass
 
+import com.endava.parking.R
 import com.endava.parking.utils.Validator
 
 class ForgotPassPresenter(
@@ -8,7 +9,13 @@ class ForgotPassPresenter(
 ) : ForgotPassContract.Presenter {
 
     override fun checkUserValidation(mail: String) {
-        view.setButtonAvailability(emailValidator.validate(mail))
+        if (emailValidator.validate(mail)) {
+            view.clearErrorMessage()
+            view.setButtonAvailability(true)
+        } else {
+            view.showErrorMessage(R.string.error_message_email)
+            view.setButtonAvailability(false)
+        }
     }
 
     override fun submitData(email: String) {}

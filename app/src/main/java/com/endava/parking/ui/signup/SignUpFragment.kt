@@ -27,11 +27,15 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupView()
     }
 
     private fun setupView() = with(binding) {
+        setOnKeyboardCloseListener {
+            if (inputEmail.text.toString() != "") {
+                presenter.validateField(InputTextType.PHONE, inputPhone.text.toString())
+            }
+        }
         inputName.setOnFocusChangeListener { _, hasFocus ->
             if (!hasFocus) {
                 presenter.validateField(InputTextType.NAME, inputName.text.toString())
@@ -84,7 +88,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
         setupToolbarNavigation()
 
-        //test code lets us know that the Submit button works
+        // test code lets us know that the Submit button works
         btnConfirm.setOnClickListener {
             Toast.makeText(
                 requireContext(),

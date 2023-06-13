@@ -3,7 +3,6 @@ package com.endava.parking.ui.forgotpass
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import com.endava.parking.BaseFragment
 import com.endava.parking.databinding.FragmentForgotPasswordBinding
 import com.endava.parking.utils.EmailValidator
@@ -18,12 +17,17 @@ class ForgotPassFragment : BaseFragment<FragmentForgotPasswordBinding>(FragmentF
         setupToolbarNavigation()
     }
 
-    private fun setupViews() = with(binding) {
-        inputEmail.addTextChangedListener {
-            presenter.checkUserValidation(inputEmail.text.toString())
+    override fun onStart() {
+        super.onStart()
+        setOnKeyboardCloseListener {
+            if (binding.inputEmail.text.toString() != "") {
+                presenter.checkUserValidation(binding.inputEmail.text.toString())
+            }
         }
+    }
 
-        //test code lets us know that the Submit button works
+    private fun setupViews() = with(binding) {
+        // test code lets us know that the Submit button works
         btnConfirm.setOnClickListener {
             Toast.makeText(
                 requireContext(),
@@ -35,6 +39,16 @@ class ForgotPassFragment : BaseFragment<FragmentForgotPasswordBinding>(FragmentF
 
     override fun setButtonAvailability(isEnable: Boolean) {
         binding.btnConfirm.isEnabled = isEnable
+    }
+
+    override fun showErrorMessage(messageId: Int) {
+        binding.inputEmailLayout.isErrorEnabled = true
+        binding.inputEmailLayout.error = resources.getString(messageId)
+    }
+
+    override fun clearErrorMessage() {
+        binding.inputEmailLayout.isErrorEnabled = false
+        binding.inputEmailLayout.error = null
     }
 
     private fun setupToolbarNavigation() {
