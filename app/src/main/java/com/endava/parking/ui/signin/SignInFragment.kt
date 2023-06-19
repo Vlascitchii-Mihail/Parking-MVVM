@@ -8,7 +8,6 @@ import androidx.core.widget.addTextChangedListener
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.databinding.FragmentSignInBinding
-import com.endava.parking.ui.forgotpass.ForgotPassFragment
 import com.endava.parking.ui.signup.InputTextType
 import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.utils.EmailValidator
@@ -86,14 +85,14 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
 
     private fun setupNavigation() = with(binding) {
         tvForgotPassword.setOnClickListener {
-            navigationCallback.navigate(ForgotPassFragment(), ForgotPassFragment.TAG, TAG)
+            navController.navigate(R.id.action_signInFragment_to_forgotPasswordFragment)
         }
         setupToolbarNavigation()
     }
 
     private fun setupToolbarNavigation() {
         binding.toolbar.setNavigationOnClickListener {
-            navigationCallback.popBackStack()
+            navController.popBackStack()
         }
     }
 
@@ -118,9 +117,5 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
                 }
             }
         }
-    }
-
-    companion object {
-        const val TAG = "SignInFragment"
     }
 }

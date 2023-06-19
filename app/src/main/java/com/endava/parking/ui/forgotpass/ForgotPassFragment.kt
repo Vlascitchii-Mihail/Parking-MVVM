@@ -53,11 +53,7 @@ class ForgotPassFragment : BaseFragment<FragmentForgotPasswordBinding>(FragmentF
 
     private fun setupToolbarNavigation() {
         binding.toolbar.setNavigationOnClickListener {
-            navigationCallback.popBackStack()
+            navController.popBackStack()
         }
-    }
-
-    companion object {
-        const val TAG = "ForgotPassFragment"
     }
 }

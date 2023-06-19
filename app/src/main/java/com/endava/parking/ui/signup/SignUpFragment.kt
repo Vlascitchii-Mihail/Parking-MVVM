@@ -163,7 +163,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     private fun setupToolbarNavigation() {
         binding.toolbar.setNavigationOnClickListener {
-            navigationCallback.popBackStack()
+            navController.popBackStack()
         }
     }
 
@@ -177,8 +177,4 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         binding.inputPassword.text.toString(),
         binding.inputPhone.text.toString()
     )
-
-    companion object {
-        const val TAG = "SignUpFragment"
-    }
 }

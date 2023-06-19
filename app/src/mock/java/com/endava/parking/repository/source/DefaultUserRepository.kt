@@ -3,7 +3,7 @@ package com.endava.parking.repository.source
 import com.endava.parking.data.UserRepository
 import com.endava.parking.data.model.User
 
-class DefaultUserRepository : UserRepository {
+class DefaultUserRepository: UserRepository {
 
     private val usersList = hashSetOf<User>(
         User("User1", "email1@mail.com", "Ab123456", "067599922"),

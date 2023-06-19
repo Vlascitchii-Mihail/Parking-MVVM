@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/welcomeFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.endava.parking.ui.welcomescreen.WelcomeFragment"
+        android:label="Welcome Fragment"
+        tools:layout="@layout/fragment_welcome_screen">
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"/>
+        <action
+            android:id="@+id/action_welcomeScreenFragment_to_SignInFragment"
+            app:destination="@id/signInFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.endava.parking.ui.signup.SignUpFragment"
+        android:label="Create An Account"
+        tools:layout="@layout/fragment_sign_up"/>
+
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.endava.parking.ui.signin.SignInFragment"
+        android:label="Sign In"
+        tools:layout="@layout/fragment_sign_in">
+        <action
+            android:id="@+id/action_signInFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPassword"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgotPassword"
+        android:name="com.endava.parking.ui.forgotpass.ForgotPassFragment"
+        android:label="Restore Password"
+        tools:layout="@layout/fragment_forgot_password"/>
+</navigation>
