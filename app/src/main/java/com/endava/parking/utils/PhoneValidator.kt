@@ -1,10 +1,11 @@
 package com.endava.parking.utils
 
 import java.util.regex.Pattern
+import javax.inject.Inject
 
 private const val PHONE_NUMBER_REGEX = "^[+]?[0-9]{9}+$"
 
-class PhoneValidator : Validator {
+class PhoneValidator @Inject constructor() : Validator {
 
     override fun validate(phoneNumber: CharSequence): Boolean {
         val pattern = Pattern.compile(PHONE_NUMBER_REGEX)

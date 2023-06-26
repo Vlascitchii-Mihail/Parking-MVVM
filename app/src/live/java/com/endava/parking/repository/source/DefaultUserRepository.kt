@@ -1,4 +1,4 @@
-package com.endava.parking.repository
+package com.endava.parking.repository.source
 
 import com.endava.parking.data.UserRepository
 import com.endava.parking.data.model.User

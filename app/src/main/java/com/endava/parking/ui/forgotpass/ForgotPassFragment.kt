@@ -3,6 +3,7 @@ package com.endava.parking.ui.forgotpass
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.endava.parking.BaseFragment
 import com.endava.parking.databinding.FragmentForgotPasswordBinding
 import com.endava.parking.utils.EmailValidator
@@ -53,7 +54,7 @@ class ForgotPassFragment : BaseFragment<FragmentForgotPasswordBinding>(FragmentF
 
     private fun setupToolbarNavigation() {
         binding.toolbar.setNavigationOnClickListener {
-            navController.popBackStack()
+            findNavController().popBackStack()
         }
     }
 }

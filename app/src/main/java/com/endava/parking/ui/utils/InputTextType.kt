@@ -1,4 +1,4 @@
-package com.endava.parking.ui.signup
+package com.endava.parking.ui.utils
 
 enum class InputTextType {
     NAME,

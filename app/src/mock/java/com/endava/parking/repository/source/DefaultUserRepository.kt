@@ -2,8 +2,9 @@ package com.endava.parking.repository.source
 
 import com.endava.parking.data.UserRepository
 import com.endava.parking.data.model.User
+import javax.inject.Inject
 
-class DefaultUserRepository: UserRepository {
+class DefaultUserRepository @Inject constructor() : UserRepository {
 
     private val usersList = hashSetOf<User>(
         User("User1", "email1@mail.com", "Ab123456", "067599922"),
@@ -17,8 +18,12 @@ class DefaultUserRepository: UserRepository {
     }
 
     override suspend fun signIn(name: String, password: String): Result<String> {
-        val result = usersList.single { s -> s.name == name }
-        return Result.success(result.name)
+        return try {
+            val result = usersList.single { s -> s.name == name }
+            Result.success(result.name)
+        } catch (ex: NoSuchElementException) {
+            Result.failure(ex)
+        }
     }
 
     override suspend fun restorePassword(email: String) = Result.success(email)

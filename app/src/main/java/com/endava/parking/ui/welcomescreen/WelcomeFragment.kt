@@ -2,6 +2,7 @@ package com.endava.parking.ui.welcomescreen
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
@@ -12,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class WelcomeFragment: BaseFragment<FragmentWelcomeScreenBinding>(
     FragmentWelcomeScreenBinding::inflate
 ) {
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -20,8 +22,8 @@ class WelcomeFragment: BaseFragment<FragmentWelcomeScreenBinding>(
     }
 
     private fun setupNavigation() = with(binding) {
-        btnSignIn.setOnClickListener { navController.navigate(R.id.action_welcomeScreenFragment_to_SignInFragment) }
-        btnCreateAccount.setOnClickListener { navController.navigate(R.id.action_welcomeScreenFragment_to_signUpFragment) }
+        btnSignIn.setOnClickListener { findNavController().navigate(R.id.action_welcomeScreenFragment_to_SignInFragment) }
+        btnCreateAccount.setOnClickListener { findNavController().navigate(R.id.action_welcomeScreenFragment_to_signUpFragment) }
     }
 }
 

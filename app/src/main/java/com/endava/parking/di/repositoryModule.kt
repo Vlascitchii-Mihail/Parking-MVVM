@@ -1,7 +1,7 @@
 package com.endava.parking.di
 
 import com.endava.parking.data.UserRepository
-import com.endava.parking.repository.DefaultUserRepository
+import com.endava.parking.repository.source.DefaultUserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -10,9 +10,9 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class RepositoryModule {
+abstract class RepositoriesModule {
 
     @Binds
     @Singleton
-    abstract fun bindUserRepository(defaultUserRepository: DefaultUserRepository): UserRepository
+    abstract fun bindsUserRepository(defaultUserRepository: DefaultUserRepository): UserRepository
 }

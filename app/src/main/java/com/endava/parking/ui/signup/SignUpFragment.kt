@@ -5,10 +5,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
+import androidx.navigation.fragment.findNavController
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
-import com.endava.parking.data.User
+import com.endava.parking.data.model.User
 import com.endava.parking.databinding.FragmentSignUpBinding
+import com.endava.parking.ui.utils.InputTextType
 import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.utils.EmailValidator
 import com.endava.parking.utils.NameValidator
@@ -163,7 +165,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     private fun setupToolbarNavigation() {
         binding.toolbar.setNavigationOnClickListener {
-            navController.popBackStack()
+            findNavController().popBackStack()
         }
     }
 
