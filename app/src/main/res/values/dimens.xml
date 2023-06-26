@@ -20,6 +20,7 @@
 
     <!--    View sizes-->
     <dimen name="btn_height">70dp</dimen>
+    <dimen name="add_level_padding">55dp</dimen>
 
     <!--    Stroke-->
     <dimen name="stroke_tiny">1dp</dimen>

@@ -3,7 +3,11 @@ package com.endava.parking.repository.source
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.model.ParkingLevel
 import com.endava.parking.data.model.ParkingLot
+import com.endava.parking.data.model.ParkingLotToRequest
+import com.endava.parking.data.model.Spot
+import com.endava.parking.data.model.SpotType
 import com.endava.parking.data.model.User
+import retrofit2.Response
 import javax.inject.Inject
 
 class DefaultParkingRepository @Inject constructor() : ParkingRepository {
@@ -25,7 +29,11 @@ class DefaultParkingRepository @Inject constructor() : ParkingRepository {
                 "Thursday",
                 "Friday"
             ),
-            levels = listOf(ParkingLevel("A", 60)),
+            levels = listOf(
+                ParkingLevel(
+                    "Level A", 60, arrayListOf(Spot(0, "A-001", SpotType.REGULAR, false))
+                )
+            ),
             occupancyLevel = 28
         ),
         ParkingLot(
@@ -40,8 +48,12 @@ class DefaultParkingRepository @Inject constructor() : ParkingRepository {
                 "Wednesday"
             ),
             levels = listOf(
-                ParkingLevel("A", 60),
-                ParkingLevel("B", 40)
+                ParkingLevel("Level A", 60, arrayListOf(Spot(0, "A-001", SpotType.FAMILY, false),
+                    Spot(0, "A-002", SpotType.DISABLED_PERSON, false),
+                    Spot(0, "A-003", SpotType.REGULAR, false),
+                    Spot(0, "A-004", SpotType.TEMPORARY_CLOSED, true),
+                    Spot(0, "A-005", SpotType.FAMILY, true))),
+                ParkingLevel("Level B", 40, arrayListOf(Spot(1, "B-001", SpotType.FAMILY, true))),
             ),
             occupancyLevel = 65,
         ),
@@ -50,7 +62,9 @@ class DefaultParkingRepository @Inject constructor() : ParkingRepository {
             name = "Kaufland Parking Lot",
             address = "Some Address",
             isNonStop = true,
-            levels = listOf(ParkingLevel("A", 120)),
+            levels = listOf(
+                ParkingLevel("Level A", 120, arrayListOf(Spot(0, "A-001", SpotType.REGULAR, false)))
+            ),
             occupancyLevel = 85
         ),
         ParkingLot(
@@ -58,13 +72,18 @@ class DefaultParkingRepository @Inject constructor() : ParkingRepository {
             name = "N1 Hypermarket Parking Lot",
             address = "Some Address",
             isClosed = true,
-            levels = listOf(ParkingLevel("A", 80)),
+            levels = listOf(
+                ParkingLevel("Level A", 80, arrayListOf(Spot(0, "A-001", SpotType.REGULAR, false)))
+            ),
             occupancyLevel = 0
         )
     )
 
-    override suspend fun createParkingLot(parkingLot: ParkingLot): Result<String> {
-        return Result.success("Parking ${parkingLot.name} was create")
+    override suspend fun createParkingLot(
+        token: String?,
+        parkingLot: ParkingLotToRequest
+    ): Response<String> {
+        return Response.success(parkingLot.name)
     }
 
     override suspend fun updateParkingLot(parkingLot: ParkingLot): Result<String> {

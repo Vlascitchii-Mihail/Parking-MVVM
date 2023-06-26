@@ -24,16 +24,12 @@
     <string name="signup_phone_label">Phone</string>
     <string name="signup_phone_hint">79123123</string>
     <string name="signup_phone_prefix">+373</string>
-    <string name="signup_user_was_submit">User is valid and was submit to the server !</string>
-    <string name="server_create_error">User already exist</string>
 
     <!--    SignInScreen-->
     <string name="sign_in_forgot_pass_action">Forgot password</string>
     <string name="sign_in_user_not_found">Email address not found</string>
     <string name="sign_in_wrong_pass">Enter the correct password</string>
     <string name="sign_in_pass_error_message">Should contain upper–case letter, number and a symbol, 5\u201510 characters</string>
-    <string name="sign_in_confirm">The user has been successfully authenticated</string>
-    <string name="server_validation_error">User doesn\'t exist</string>
     <string name="decoding_error">Token decoding error</string>
 
     <!--    Forgot Password Screen-->
@@ -65,4 +61,40 @@
 
     <!--    Server's Error messages-->
     <string name="something_wrong_happened">Something wrong happened</string>
+
+    <!--    Create Parking Lot Fragment-->
+    <string name="lot_admin_address">Address</string>
+    <string name="lot_admin_level_a">Level A</string>
+    <string name="lot_admin_level_b">Level B</string>
+    <string name="lot_admin_level_c">Level C</string>
+    <string name="lot_admin_level_d">Level D</string>
+    <string name="lot_admin_level_e">Level E</string>
+    <string name="lot_admin_hint">MallDova Parking Lot</string>
+    <string name="lot_admin_address_hint">str. Arborilor 21, or. Chisinau</string>
+    <string name="lot_admin_operating_hours_up_hint">Operating Hours</string>
+    <string name="lot_admin_is_operates_24">Parking lot operates 24/7</string>
+    <string name="lot_admin_temp_closed">Temporary Closed</string>
+    <string name="lot_admin_sun">S</string>
+    <string name="lot_admin_mon">M</string>
+    <string name="lot_admin_tues">T</string>
+    <string name="lot_admin_wednes">W</string>
+    <string name="lot_admin_thurs">T</string>
+    <string name="lot_admin_fri">F</string>
+    <string name="lot_admin_satur">S</string>
+    <string name="lot_admin_sunday">Sunday</string>
+    <string name="lot_admin_monday">Monday</string>
+    <string name="lot_admin_tuesday">Tuesday</string>
+    <string name="lot_admin_wednesday">Wednesday</string>
+    <string name="lot_admin_thursday">Thursday</string>
+    <string name="lot_admin_friday">Friday</string>
+    <string name="lot_admin_saturday">Saturday</string>
+    <string name="lot_admin_number_spots">Number of parking spots</string>
+    <string name="lot_admin_add_level">+ Add Level</string>
+    <string name="lot_admin_number_spots_hint">eg. 54</string>
+    <string name="lot_admin_create_lot_toolbar">Create Parking Lot</string>
+    <string name="lot_admin_operating_hours_hint">10:00 \- 23:00</string>
+    <string name="lot_admin_operating_hours">%1s\ - %2s</string>
+    <string name="lot_admin_error">Should contain 2\-70 characters</string>
+    <string name="lot_admin_error_levels">Should contain 1\-3 digits, first digit can\'t be 0, max 150</string>
+    <string name="lot_admin_time_delimitation">The start time must not be greater than the end time</string>
 </resources>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/welcomeFragment">
+    app:startDestination="@id/fragmentCreateParkingLot">
 
     <fragment
         android:id="@+id/welcomeFragment"
@@ -51,5 +51,17 @@
         android:id="@+id/parkingLotsFragment"
         android:name="com.endava.parking.ui.parkinglots.ParkingLotsFragment"
         android:label="Parking Lots"
-        tools:layout="@layout/fragment_parking_lots"/>
+        tools:layout="@layout/fragment_parking_lots">
+        <action
+            android:id="@+id/action_parkingLotsFragment_to_fragmentCreateParkingLot"
+            app:destination="@id/fragmentCreateParkingLot"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCreateParkingLot"
+        android:name="com.endava.parking.ui.createparkinglot.FragmentCreateParkingLot"
+        android:label="CreateLot"
+        tools:layout="@layout/create_parking_layout">
+    </fragment>
+
 </navigation>

@@ -1,6 +1,7 @@
 package com.endava.parking.repository.source
 
 import com.endava.parking.data.UserRepository
+import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.api.ApiService
 import com.endava.parking.data.model.User
 import retrofit2.Response
