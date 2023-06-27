@@ -1,11 +1,10 @@
 package com.endava.parking.utils
 
 import java.util.regex.Pattern
-import javax.inject.Inject
 
-private const val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=*])(?=\\S+$).{5,10}$"
+private const val PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+*\"':;?])[A-Za-z0-9!@#\$%^&*()_+*\"':;?]{5,10}$"
 
-class PasswordValidator @Inject constructor() : Validator {
+class PasswordValidator : Validator {
 
     override fun validate(password: CharSequence): Boolean {
         val regex = PASSWORD_REGEX

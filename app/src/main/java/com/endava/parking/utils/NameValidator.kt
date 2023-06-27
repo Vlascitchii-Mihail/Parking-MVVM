@@ -4,8 +4,8 @@ import java.util.regex.Pattern
 import javax.inject.Inject
 
 private const val NAME_REGEX = "^[A-Za-z]+$"
-private const val MIN_NAME_LENGTH = 3
-private const val MAX_NAME_LENGTH = 20
+private const val MIN_NAME_LENGTH = 1
+private const val MAX_NAME_LENGTH = 30
 
 class NameValidator @Inject constructor() : Validator {
 

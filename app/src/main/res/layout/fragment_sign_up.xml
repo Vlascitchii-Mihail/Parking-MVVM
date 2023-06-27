@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/signup_name_hint"
             android:imeOptions="actionNext"
-            android:inputType="textPersonName" />
+            android:inputType="textCapSentences" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -87,6 +87,7 @@
         android:layout_marginHorizontal="@dimen/margin_medium"
         android:layout_marginVertical="@dimen/margin_large"
         android:hint="@string/signup_phone_label"
+        app:prefixText="@string/signup_phone_prefix"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/input_password_layout">
@@ -96,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/signup_phone_hint"
+            android:digits="0123456789"
             android:imeOptions="actionDone"
             android:inputType="phone" />
     </com.google.android.material.textfield.TextInputLayout>

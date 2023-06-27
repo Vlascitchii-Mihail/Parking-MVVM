@@ -52,8 +52,6 @@
         <item name="android:textColorHint">@color/black_30</item>
         <!--    fontFamily for both small hint and big hint-->
         <item name="android:fontFamily">@font/mulish_400</item>
-        <!--    textSize for both text and big hint-->
-        <item name="android:textSize">@dimen/text_large</item>
     </style>
 
 
