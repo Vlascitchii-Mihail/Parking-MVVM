@@ -32,12 +32,12 @@
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_forgotPasswordFragment"
-            app:destination="@id/forgotPassword"/>
+            app:destination="@id/restorePassword"/>
     </fragment>
 
     <fragment
-        android:id="@+id/forgotPassword"
-        android:name="com.endava.parking.ui.forgotpass.ForgotPassFragment"
+        android:id="@+id/restorePassword"
+        android:name="com.endava.parking.ui.restorepassword.RestorePassFragment"
         android:label="Restore Password"
-        tools:layout="@layout/fragment_forgot_password"/>
+        tools:layout="@layout/fragment_restore_pass"/>
 </navigation>

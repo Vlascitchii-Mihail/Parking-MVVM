@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/ic_back_button"
-        app:title="@string/forgot_title"
+        app:title="@string/restore_title"
         app:titleCentered="true"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_medium"
         android:layout_marginVertical="@dimen/margin_small"
-        android:text="@string/forgot_password_instruction"
+        android:text="@string/restore_instruction"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_margin="@dimen/margin_medium"
         android:enabled="false"
-        android:text="@string/forgot_action"
+        android:text="@string/restore_action"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
