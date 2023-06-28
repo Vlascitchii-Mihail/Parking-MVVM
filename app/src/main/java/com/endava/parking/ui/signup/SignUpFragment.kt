@@ -7,6 +7,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.data.model.User
@@ -77,7 +78,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 
     private fun setupToolbarNavigation() {
         binding.toolbar.setNavigationOnClickListener {
-            navController.popBackStack()
+            findNavController().popBackStack()
         }
     }
 }
