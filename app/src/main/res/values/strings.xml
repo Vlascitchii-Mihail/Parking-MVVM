@@ -31,7 +31,7 @@
     <string name="sign_in_user_not_found">Email address not found</string>
     <string name="sign_in_wrong_pass">Enter the correct password</string>
     <string name="sign_in_pass_error_message">Should contain upper–case letter, number and a symbol, 5\u201510 characters</string>
-
+    <string name="sign_in_confirm">The user has been successfully authenticated</string>
 
     <!--    Forgot Password Screen-->
     <string name="restore_title">Restore Password</string>

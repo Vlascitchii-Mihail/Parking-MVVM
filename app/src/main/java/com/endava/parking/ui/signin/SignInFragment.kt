@@ -1,12 +1,10 @@
 package com.endava.parking.ui.signin
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -15,6 +13,8 @@ import com.endava.parking.R
 import com.endava.parking.databinding.FragmentSignInBinding
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.makeTextClickable
+import com.endava.parking.ui.utils.showToast
+import com.endava.parking.utils.BlankSpacesInputFilter
 import com.google.android.material.textfield.TextInputEditText
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding::inflate) {
 
     private val viewModel: SignInViewModel by viewModels()
+    private val inputFilter = BlankSpacesInputFilter()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -41,6 +42,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
             }
         )
 
+        inputEmail.filters = arrayOf(inputFilter)
         inputEmail.setOnEditorActionListener { _, actionId, _ ->
             //set focus on inputPassword if was clicked the keyboard next button
             if (actionId == EditorInfo.IME_ACTION_NEXT) {
@@ -49,6 +51,7 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
             return@setOnEditorActionListener true
         }
 
+        inputPassword.filters = arrayOf(inputFilter)
         inputPassword.setOnEditorActionListener { _, actionId, _ ->
             //hide keyboard if was clicked the keyboard done button from password field
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -93,6 +96,9 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         }
         viewModel.buttonEnabled.observe(viewLifecycleOwner) { isValidInput ->
             binding.btnConfirm.isEnabled = isValidInput
+        }
+        viewModel.showToastEvent.observe(viewLifecycleOwner) { stringId ->
+            requireContext().showToast(stringId)
         }
     }
 

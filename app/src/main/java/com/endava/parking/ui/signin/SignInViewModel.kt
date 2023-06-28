@@ -27,13 +27,19 @@ class SignInViewModel @Inject constructor(
 
     private val _buttonEnabled = MutableLiveData<Boolean>()
     val buttonEnabled: LiveData<Boolean> get() = _buttonEnabled
+    private val _showToastEvent = MutableLiveData<Int>()
+    val showToastEvent: LiveData<Int> = _showToastEvent
+
 
     fun validateInput(emailInput: String, passInput: String) {
         val isValidEmail = emailValidator.validate(emailInput)
         val isValidPass = passwordValidator.validate(passInput)
         _validationStates.value = getInputStateList(isValidEmail, isValidPass)
 
-        if (isValidEmail && isValidPass) signIn(emailInput, passInput)
+        if (isValidEmail && isValidPass) {
+            signIn(emailInput, passInput)
+            _showToastEvent.value = R.string.sign_in_confirm
+        }
     }
 
     fun checkButtonState(isEmptyFields: Boolean) {
