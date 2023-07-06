@@ -81,13 +81,6 @@
     <string name="lot_admin_thurs">T</string>
     <string name="lot_admin_fri">F</string>
     <string name="lot_admin_satur">S</string>
-    <string name="lot_admin_sunday">Sunday</string>
-    <string name="lot_admin_monday">Monday</string>
-    <string name="lot_admin_tuesday">Tuesday</string>
-    <string name="lot_admin_wednesday">Wednesday</string>
-    <string name="lot_admin_thursday">Thursday</string>
-    <string name="lot_admin_friday">Friday</string>
-    <string name="lot_admin_saturday">Saturday</string>
     <string name="lot_admin_number_spots">Number of parking spots</string>
     <string name="lot_admin_add_level">+ Add Level</string>
     <string name="lot_admin_number_spots_hint">eg. 54</string>
@@ -97,4 +90,40 @@
     <string name="lot_admin_error">Should contain 2\-70 characters</string>
     <string name="lot_admin_error_levels">Should contain 1\-3 digits, first digit can\'t be 0, max 150</string>
     <string name="lot_admin_time_delimitation">The start time must not be greater than the end time</string>
+
+    <!--    ParkingLot Tabs-->
+    <string name="tabs_name">%1$s</string>
+    <string name="tab_details">Details</string>
+    <string name="tab_parking_spots">Parking Spots</string>
+
+    <!--    ParkingLot User Details-->
+    <string name="details_user_address">Address</string>
+    <string name="details_user_address_hint">str. Arborilor 21, or. Chisinau</string>
+    <string name="details_user_working_days">Working Days</string>
+    <string name="details_user_working_hours">Working Hours</string>
+    <string name="details_user_levels">Levels</string>
+    <string name="details_user_levels_hint">2</string>
+    <string name="details_user_levels_spots_number_hint">23</string>
+    <string name="details_user_working_hours_hint">18:00 /- 08:00</string>
+    <string name="details_user_days_schedule">S/M/T/W/T/F/S</string>
+    <string name="details_user_accessible_parking_spots">Number of Accessible Parking Spots</string>
+    <string name="details_user_accessible_family_spots">Number of Family Friendly Spots</string>
+    <string name="label_working_hours_24_7">Operates 24/7</string>
+
+    <!--    Days Names-->
+    <string name="lot_admin_sunday">Sunday</string>
+    <string name="lot_admin_monday">Monday</string>
+    <string name="lot_admin_tuesday">Tuesday</string>
+    <string name="lot_admin_wednesday">Wednesday</string>
+    <string name="lot_admin_thursday">Thursday</string>
+    <string name="lot_admin_friday">Friday</string>
+    <string name="lot_admin_saturday">Saturday</string>
+
+    <!--    Bottom sheet-->
+    <string name="sheet_park_spot_type">Parking spot type</string>
+    <string name="sheet_park_spot_regular">Regular</string>
+    <string name="sheet_park_spot_family">Family Friendly</string>
+    <string name="sheet_park_spot_disable">Disabled</string>
+    <string name="sheet_park_btn_park">Park here</string>
+
 </resources>

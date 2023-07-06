@@ -20,9 +20,11 @@ class DefaultUserRepository @Inject constructor() : UserRepository {
     }
 
     override suspend fun signIn(name: String, password: String): Response<String> {
-        val response = usersList.filter { it.name == name }
-        return if (response.isNotEmpty()) Response.success(response.first().name)
-        else Response.success("Not found")
+        return try {
+            Response.success("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJJZCI6Ijk3Yzg0YmRkLTNjZTQtNDljOS1hNzYxLWRhYzhlZWZjZmFkNCIsIlVzZXJOYW1lIjoiYW5kcm9pZCIsIkVtYWlsIjoiYW5kcm9pZEBnbWFpbC5jb20iLCJSb2xlIjoiVXNlciIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJleHAiOjE2OTE1ODgzMDksImlzcyI6IlBhcmtpbmdQbGFubmVyIiwiYXVkIjoiUGFya2luTG9nVUkifQ.NdIZdhSHDVZfsMf-1Ojyy2PI4vS_usDJ7N9-Ycjb4lQ ")
+        } catch (ex: NoSuchElementException) {
+            Response.success("Fail")
+        }
     }
 
     override suspend fun restorePassword(email: String) = Response.success(email)

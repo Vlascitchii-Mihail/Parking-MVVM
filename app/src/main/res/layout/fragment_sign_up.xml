@@ -104,7 +104,7 @@
 
     <TextView
         android:id="@+id/tv_agreement_message"
-        style="@style/Text"
+        style="@style/TextMediumCentered"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_medium"
