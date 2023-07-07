@@ -23,7 +23,6 @@ import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentParkingLotsBinding
-import com.endava.parking.ui.utils.showLongToast
 import com.endava.parking.ui.utils.showToast
 import com.google.zxing.integration.android.IntentIntegrator
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,6 +52,9 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
 
     private fun setupView() {
         with (binding) {
+            ivToolbarSearch.setOnClickListener { showSearchToolbar() }
+            inputSearchParking.addTextChangedListener { viewModel.searchParking(it.toString()) }
+            toolbarSearch.setNavigationOnClickListener { hideSearchToolbar() }
             swipeRefresh.setOnRefreshListener { fetchParkingList() }
             swipeRefresh.setColorSchemeColors(resources.getColor(R.color.pomegranate))
             val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)

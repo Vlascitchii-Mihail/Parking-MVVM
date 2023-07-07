@@ -54,7 +54,7 @@
     <string name="parking_lot_start_hour">06:00</string>
     <string name="parking_lot_end_hour">24:00</string>
     <string name="parking_lot_hint_open_hours">18:00 – 23:00</string>
-    <string name="parking_lot_hint_open_days">S/M/T/W/T/F/S</string>
+    <string name="parking_lot_working_days">S/M/T/W/T/F/S</string>
     <string name="parking_lot_24_7">24/7</string>
     <string name="parking_lot_not_available">Temporary not available</string>
     <string name="parking_lot_search">Search Parking</string>

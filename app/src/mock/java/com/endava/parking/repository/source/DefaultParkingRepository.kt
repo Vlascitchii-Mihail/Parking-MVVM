@@ -302,6 +302,25 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
                 ParkingLevel("Level A", 80, arrayListOf(Spot(0, "A-001", SpotType.REGULAR, false)))
             ),
             occupancyLevel = 0
+        ),
+        ParkingLot(
+            id = "4",
+            name = "Endava Tower",
+            address = "Some Address",
+            startHour = "10:00",
+            endHour = "23:00",
+            days = listOf(
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday"
+            ),
+            levels = listOf(
+                ParkingLevel("A", 60),
+                ParkingLevel("B", 40),
+                ParkingLevel("C", 40)
+            ),
+            occupancyLevel = 23,
         )
     )
 
