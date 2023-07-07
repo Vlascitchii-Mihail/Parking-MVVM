@@ -51,7 +51,7 @@
                     android:id="@+id/parking_lot_open_days"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/parking_lot_hint_open_days"
+                    android:text="@string/parking_lot_working_days"
                     android:textColorHint="@color/black_60" />
             </LinearLayout>
         </LinearLayout>
