@@ -23,6 +23,7 @@ import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentParkingLotsBinding
+import com.endava.parking.ui.utils.showLongToast
 import com.endava.parking.ui.utils.showToast
 import com.google.zxing.integration.android.IntentIntegrator
 import dagger.hilt.android.AndroidEntryPoint
@@ -63,7 +64,6 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
             recyclerView.addItemDecoration(dividerItemDecoration)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
-            toolbarSearchIcon.setOnClickListener { requireContext().showToast("Search action !") } // TODO - remove toast. Only for test
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
     }
