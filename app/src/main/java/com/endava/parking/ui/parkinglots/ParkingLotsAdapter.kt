@@ -1,7 +1,6 @@
 package com.endava.parking.ui.parkinglots
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.endava.parking.R
 import com.endava.parking.data.model.ParkingLot
+import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.ItemParkingLotBinding
 import com.endava.parking.ui.utils.colorWorkingDays
 
 class ParkingLotsAdapter(
+    private val userRole: UserRole,
     private val onListItemClickListener: (String) -> Unit,
 ) : ListAdapter<ParkingLot, ParkingLotsAdapter.ViewHolder>(ListItemCallback()) {
-
-    private var isUserAdmin = false
 
     class ListItemCallback : DiffUtil.ItemCallback<ParkingLot>() {
         override fun areItemsTheSame(oldItem: ParkingLot, newItem: ParkingLot): Boolean = (oldItem.id == newItem.id)
@@ -32,8 +31,6 @@ class ParkingLotsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
-    fun setAdminStatus(userAdminRights: Boolean) { isUserAdmin = userAdminRights }
-
     inner class ViewHolder(private val binding: ItemParkingLotBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -46,9 +43,11 @@ class ParkingLotsAdapter(
                 parkingLotOpenDays.colorWorkingDays(item.days, Color.RED)
                 availabilityIndicator.setTemporaryClosedMode(false)
                 availabilityIndicator.changeLevel(item.occupancyLevel)
+                parkingLotArrowIcon.visibility = View.VISIBLE
                 if (item.isClosed != true) root.setOnClickListener { onListItemClickListener(item.id) }
                 /** Non Stop */
                 if (item.isNonStop == true) {
+                    parkingLotArrowIcon.visibility = View.VISIBLE
                     parkingLotOpenHours.text = root.resources.getString(R.string.parking_lot_24_7)
                     root.setOnClickListener { onListItemClickListener(item.id) }
                     parkingLotOpenDays.text = ""
@@ -58,11 +57,12 @@ class ParkingLotsAdapter(
                     parkingLotOpenDays.text = ""
                     parkingLotOpenHours.text = root.resources.getString(R.string.parking_lot_not_available)
                     /** User - Admin */
-                    if (isUserAdmin) {
+                    if (userRole == UserRole.ADMIN) {
                         parkingLotArrowIcon.visibility = View.VISIBLE
                         root.setOnClickListener { onListItemClickListener(item.id) }
                     /** User - Regular */
-                    } else { parkingLotArrowIcon.visibility = View.GONE }
+                    }
+                    if (userRole == UserRole.REGULAR) { parkingLotArrowIcon.visibility = View.VISIBLE }
                 }
             }
         }
