@@ -12,6 +12,7 @@ import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.data.model.User
 import com.endava.parking.databinding.FragmentSignUpBinding
+import com.endava.parking.ui.parkinglots.ParkingLotsFragment
 import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.ui.utils.showToast
 import com.endava.parking.utils.BlankSpacesInputFilter
@@ -33,7 +34,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
     private fun setupObservers() {
         viewModel.inputStates.observe(viewLifecycleOwner) { signUpErrorHandler.setErrorStates(it) }
         viewModel.buttonEnableState.observe(viewLifecycleOwner) { binding.btnConfirm.isEnabled = it }
-        viewModel.showToastEvent.observe(viewLifecycleOwner) { requireContext().showToast(resources.getString(it)) }
+        viewModel.showToastEvent.observe(viewLifecycleOwner) { navigateToParkingLots(it) }
     }
 
     private fun setupViews() = with(binding) {
@@ -67,6 +68,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             }
         )
         setupToolbarNavigation()
+    }
+
+    private fun navigateToParkingLots(resId: Int) {
+        requireContext().showToast(resources.getString(resId))
+        val bundle = Bundle()
+        bundle.putParcelable(ParkingLotsFragment.USER_KEY, getUser())
+        findNavController().navigate(R.id.action_signUpFragment_to_parkingLotsFragment, bundle)
     }
 
     private fun getUser(): User = User(

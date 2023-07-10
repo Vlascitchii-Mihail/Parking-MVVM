@@ -10,7 +10,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
+import com.endava.parking.data.model.User
 import com.endava.parking.databinding.FragmentSignInBinding
+import com.endava.parking.ui.parkinglots.ParkingLotsFragment
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.ui.utils.showToast
@@ -100,6 +102,14 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         viewModel.showToastEvent.observe(viewLifecycleOwner) { stringId ->
             requireContext().showToast(stringId)
         }
+        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
+    }
+
+    private fun navigateToParkingLots() {
+        val bundle = Bundle()
+        // TODO. Change according to backend
+        bundle.putParcelable(ParkingLotsFragment.USER_KEY, User("Name", "w@w.w", "Ab12#", "12345678"))
+        findNavController().navigate(R.id.action_signInFragment_to_parkingLotsFragment, bundle)
     }
 
     private fun setErrorMessage(validationStateList: List<InputState>) {

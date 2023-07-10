@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="AvailabilityIndicator" >
+        <attr name="circleFillColor" format="color" />
+        <attr name="circleStrokeColor" format="color" />
+        <attr name="circleStrokeWidth" format="float" />
+        <attr name="value" format="integer" />
+    </declare-styleable>
+</resources>

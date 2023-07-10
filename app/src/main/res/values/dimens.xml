@@ -23,4 +23,7 @@
 
     <!--    Stroke-->
     <dimen name="stroke_tiny">1dp</dimen>
+
+    <!--    AvailabilityIndicator-->
+    <dimen name="indicator_size">40dp</dimen>
 </resources>

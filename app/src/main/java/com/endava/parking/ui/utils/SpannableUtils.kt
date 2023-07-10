@@ -1,13 +1,16 @@
 package com.endava.parking.ui.utils
 
 import android.graphics.Typeface
+import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.text.style.ForegroundColorSpan
 import android.view.View
 import android.widget.TextView
+import com.endava.parking.data.model.WorkingDay
 
 fun TextView.makeTextClickable(
     phrase: String,
@@ -42,4 +45,29 @@ fun TextView.makeTextClickable(
 
     this.movementMethod = LinkMovementMethod.getInstance()
     this.text = spannableString
+}
+
+fun TextView.colorWorkingDays(days: List<String>?, color: Int) {
+
+    /** Set week, as - not working */
+    val workingDays: ArrayList<WorkingDay> = arrayListOf()
+    for (i in 1..7) { workingDays.add(WorkingDay(i, false)) }
+
+    /** Each day from backend, set as working day */
+    for (day in DaysOfWeek.values()) {
+        if (days?.contains(day.printableName) == true) { workingDays[day.ordinal].isWorking = true }
+    }
+    val spannable = SpannableString(text)
+    var start: Int
+    var end: Int
+    var separatorsCount: Int
+    workingDays.forEach {
+        /** Count separators between day symbols - S/M/T/W/T/F/S,
+         * for every single day, it help us to find start and end positions */
+        separatorsCount = it.weekDayNumber - 1
+        end = it.weekDayNumber + separatorsCount
+        start = end - 1
+        if (!it.isWorking) { spannable.setSpan(ForegroundColorSpan(color), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) }
+    }
+    text = spannable
 }

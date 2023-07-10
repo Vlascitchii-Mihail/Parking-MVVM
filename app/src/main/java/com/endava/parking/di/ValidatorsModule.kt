@@ -31,4 +31,3 @@ abstract class ValidatorsModule {
     @Named("Phone")
     abstract fun bindPhoneValidator(phoneValidator: PhoneValidator): Validator
 }
-

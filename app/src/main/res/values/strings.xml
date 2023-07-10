@@ -45,4 +45,18 @@
     <string name="error_message_email">Email doesn`t match the conditions</string>
     <string name="error_message_phone_8_digits">Phone must have 8 digits</string>
     <string name="error_message_phone_only_digits">Phone should accept only digits </string>
+
+    <!--    Parking Lots-->
+    <string name="parking_lots_title">Parking Lots</string>
+    <string name="parking_lot_hint_name">Parking Lot Name</string>
+    <string name="parking_lot_start_hour">06:00</string>
+    <string name="parking_lot_end_hour">24:00</string>
+    <string name="parking_lot_hint_open_hours">18:00 – 23:00</string>
+    <string name="parking_lot_hint_open_days">S/M/T/W/T/F/S</string>
+    <string name="parking_lot_24_7">24/7</string>
+    <string name="parking_lot_not_available">Temporary not available</string>
+    <string name="parking_lot_search">Search Parking</string>
+    <string name="parking_lot_qr_prompt">Please focus on the Parking QR Code</string>
+    <string name="parking_lot_vacate">Vacate</string>
+    <string name="parking_lot_currently_parked">You are currently parked on spot</string>
 </resources>

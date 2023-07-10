@@ -21,6 +21,9 @@ class SignInViewModel @Inject constructor(
     private val userRepository: UserRepository
 ): ViewModel()  {
 
+    private val _navigateToParkingLots = MutableLiveData<String>()   // TODO. Change according to backend
+    val navigateToParkingLots: LiveData<String> = _navigateToParkingLots
+
     private val _validationStates: MutableLiveData<List<InputState>> = MutableLiveData()
     val validationStates: LiveData<List<InputState>>
         get() = _validationStates
@@ -39,6 +42,7 @@ class SignInViewModel @Inject constructor(
         if (isValidEmail && isValidPass) {
             signIn(emailInput, passInput)
             _showToastEvent.value = R.string.sign_in_confirm
+            _navigateToParkingLots.value = emailInput     // TODO. Change according to backend
         }
     }
 

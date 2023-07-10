@@ -23,7 +23,11 @@
         android:id="@+id/signUpFragment"
         android:name="com.endava.parking.ui.signup.SignUpFragment"
         android:label="Create An Account"
-        tools:layout="@layout/fragment_sign_up"/>
+        tools:layout="@layout/fragment_sign_up">
+        <action
+            android:id="@+id/action_signUpFragment_to_parkingLotsFragment"
+            app:destination="@id/parkingLotsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/signInFragment"
@@ -33,6 +37,9 @@
         <action
             android:id="@+id/action_signInFragment_to_forgotPasswordFragment"
             app:destination="@id/restorePassword"/>
+        <action
+            android:id="@+id/action_signInFragment_to_parkingLotsFragment"
+            app:destination="@id/parkingLotsFragment" />
     </fragment>
 
     <fragment
@@ -40,4 +47,10 @@
         android:name="com.endava.parking.ui.restorepassword.RestorePassFragment"
         android:label="Restore Password"
         tools:layout="@layout/fragment_restore_pass"/>
+
+    <fragment
+        android:id="@+id/parkingLotsFragment"
+        android:name="com.endava.parking.ui.parkinglots.ParkingLotsFragment"
+        android:label="Parking Lots"
+        tools:layout="@layout/fragment_parking_lots"/>
 </navigation>

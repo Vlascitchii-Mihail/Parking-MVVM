@@ -12,6 +12,9 @@
 
     <color name="pomegranate">#F44336</color>
     <color name="pomegranate_30">#4DF44336</color>
+    <color name="japanese_laurel">#04B100</color>
+    <color name="yellow">#FAFF00</color>
+    <color name="persian_red">#D32F2F</color>
 
     <color name="gray">#A9A9A9</color>
     <color name="dark_gray">#707070</color>
