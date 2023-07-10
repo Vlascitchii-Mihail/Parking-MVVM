@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endava.parking.data.ParkingRepository
+import com.endava.parking.data.datastore.AuthDataStore
 import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.User
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,11 +15,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ParkingLotsViewModel @Inject constructor(
+    private val authDataStore: AuthDataStore,
     private val repository: ParkingRepository
 ) : ViewModel() {
 
     private val _fetchParkingLots = MutableLiveData<List<ParkingLot>>()
     val fetchParkingLots: LiveData<List<ParkingLot>> = _fetchParkingLots
+
+    private val _setUserRole = MutableLiveData<String>()
+    val setUserRole: LiveData<String> = _setUserRole
 
     private val _fetchListError = MutableLiveData<String>()
     val fetchListError: LiveData<String> = _fetchListError
@@ -39,6 +44,10 @@ class ParkingLotsViewModel @Inject constructor(
                 .onFailure { _fetchListError.value = it.message }
             _progressBarVisibility.value = false
         }
+    }
+
+    fun getUserRole() {
+        viewModelScope.launch { _setUserRole.value = authDataStore.getUserRole() }
     }
 
     fun openSpotByQrCode(qrCode: String) { _openSpotByQrCode.value = qrCode }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endava.parking.R
 import com.endava.parking.data.UserRepository
+import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.User
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
@@ -18,6 +19,7 @@ import javax.inject.Named
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
     private val repository: UserRepository,
+    private val defaultAuthDataStore: DefaultAuthDataStore,
     @Named("Name") private val nameValidator: Validator,
     @Named("Email") private val emailValidator: Validator,
     @Named("Password") private val passwordValidator: Validator,
@@ -42,10 +44,23 @@ class SignUpViewModel @Inject constructor(
             phoneValidator.validate(user.phone)
         ) {
             viewModelScope.launch {
-                repository.signUp(user)
+                val result = repository.signUp(user)
+                result
+                    .onSuccess {
+                        // TODO - extract user-role from token
+                        defaultAuthDataStore.putUserRole("admin")
+                    }
+                    .onFailure {  }
                 _showToastEvent.value = R.string.signup_user_was_submit
             }
         }
+    }
+
+    fun checkButtonState(user: User) {
+        _buttonEnableState.value = user.name != ""
+            && user.email != ""
+            && user.password != ""
+            && user.phone != ""
     }
 
     private fun setErrorMessageStates(user: User) {
@@ -67,13 +82,6 @@ class SignUpViewModel @Inject constructor(
                 isValid = phoneValidator.validate(user.phone),
                 errorMessage = choosePhoneErrorMessage(user.phone))
             )
-    }
-
-    fun checkButtonState(user: User) {
-        _buttonEnableState.value = user.name != ""
-            && user.email != ""
-            && user.password != ""
-            && user.phone != ""
     }
 
     private fun chooseNameErrorMessage(name: String): Int {

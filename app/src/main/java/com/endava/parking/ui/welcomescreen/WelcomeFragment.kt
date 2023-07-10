@@ -26,4 +26,3 @@ class WelcomeFragment: BaseFragment<FragmentWelcomeScreenBinding>(
         btnCreateAccount.setOnClickListener { findNavController().navigate(R.id.action_welcomeScreenFragment_to_signUpFragment) }
     }
 }
-

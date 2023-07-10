@@ -29,8 +29,11 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
+        setupFab()
+        setupScanner()
         setupObservers()
         fetchParkingList()
+        setupToolbarNavigation()
     }
 
     private fun fetchParkingList() { viewModel.fetchParkingLots(user) }
@@ -39,10 +42,6 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
         user = checkNotNull(arguments?.getParcelable(USER_KEY))
         with (binding) {
             swipeRefresh.setOnRefreshListener { fetchParkingList() }
-            setupScanner()
-            setupFab()
-            setupToolbarNavigation()
-
             val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
             dividerItemDecoration.setDrawable(checkNotNull(ContextCompat.getDrawable(requireContext(), R.drawable.divider_drawable)))
             val recyclerView = rvParkingLots
