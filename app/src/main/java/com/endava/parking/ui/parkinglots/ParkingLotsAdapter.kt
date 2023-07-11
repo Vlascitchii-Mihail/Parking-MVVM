@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -43,11 +44,10 @@ class ParkingLotsAdapter(
                 parkingLotOpenDays.colorWorkingDays(item.days, Color.RED)
                 availabilityIndicator.setTemporaryClosedMode(false)
                 availabilityIndicator.changeLevel(item.occupancyLevel)
-                parkingLotArrowIcon.visibility = View.VISIBLE
+                parkingLotArrowIcon.isVisible = true
                 if (item.isClosed != true) root.setOnClickListener { onListItemClickListener(item.id) }
                 /** Non Stop */
                 if (item.isNonStop == true) {
-                    parkingLotArrowIcon.visibility = View.VISIBLE
                     parkingLotOpenHours.text = root.resources.getString(R.string.parking_lot_24_7)
                     root.setOnClickListener { onListItemClickListener(item.id) }
                     parkingLotOpenDays.text = ""
@@ -58,11 +58,11 @@ class ParkingLotsAdapter(
                     parkingLotOpenHours.text = root.resources.getString(R.string.parking_lot_not_available)
                     /** User - Admin */
                     if (userRole == UserRole.ADMIN) {
-                        parkingLotArrowIcon.visibility = View.VISIBLE
+                        parkingLotArrowIcon.isVisible = true
                         root.setOnClickListener { onListItemClickListener(item.id) }
                     /** User - Regular */
                     }
-                    if (userRole == UserRole.REGULAR) { parkingLotArrowIcon.visibility = View.VISIBLE }
+                    if (userRole == UserRole.REGULAR) { parkingLotArrowIcon.isVisible = false }
                 }
             }
         }
