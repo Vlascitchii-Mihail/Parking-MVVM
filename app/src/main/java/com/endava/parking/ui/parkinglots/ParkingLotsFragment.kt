@@ -1,6 +1,7 @@
 package com.endava.parking.ui.parkinglots
 
 import android.app.AlertDialog
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +11,7 @@ import androidx.activity.addCallback
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.fragment.findNavController
@@ -42,11 +44,11 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
         userRole = args.userrole
 
         setupView()
-        setupObservers()
-        setupScanner()
         setupFab()
-        setupToolbarNavigation()
+        setupScanner()
+        setupObservers()
         fetchParkingList()
+        setupToolbarNavigation()
     }
 
     private fun fetchParkingList() { viewModel.fetchParkingLots() }
@@ -89,6 +91,8 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
         serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showLongToast(it) }
         fetchParkingLots.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+            setupFab()
+            binding.tvSearchUnsuccessful.isVisible = it.isEmpty()
         }
     }
 
