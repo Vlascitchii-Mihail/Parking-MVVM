@@ -1,13 +1,19 @@
 package com.endava.parking.ui.parkinglots
 
+import android.app.Activity
+import android.app.AlertDialog
+import android.content.Context
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.activity.addCallback
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
+import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.UserRole
@@ -48,6 +55,7 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     private fun fetchParkingList() { viewModel.fetchParkingLots() }
 
     private fun setupView() {
+        user = checkNotNull(arguments?.getParcelable(USER_KEY))
         with (binding) {
             swipeRefresh.setOnRefreshListener { fetchParkingList() }
             swipeRefresh.setColorSchemeColors(resources.getColor(R.color.pomegranate))
@@ -109,6 +117,12 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     private val adapterClickListener = { parkingLot: ParkingLot ->
         val action = ParkingLotsFragmentDirections.actionParkingLotsFragmentToTabsFragment(userRole)
         findNavController().navigate(action)
+    }
+
+    private fun Context.hideKeyboard(view: View) {
+        val inputMethodManager =
+            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun navigateToDetails(qrNavigation: QrNavigation) {

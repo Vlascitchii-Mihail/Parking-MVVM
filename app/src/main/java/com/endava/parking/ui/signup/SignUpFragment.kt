@@ -13,6 +13,7 @@ import com.endava.parking.R
 import com.endava.parking.data.model.User
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentSignUpBinding
+import com.endava.parking.ui.parkinglots.ParkingLotsCredentials
 import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.ui.utils.showToast
 import com.endava.parking.utils.BlankSpacesInputFilter

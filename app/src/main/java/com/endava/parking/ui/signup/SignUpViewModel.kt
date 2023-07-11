@@ -9,6 +9,7 @@ import com.endava.parking.data.UserRepository
 import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.User
 import com.endava.parking.data.model.UserRole
+import com.endava.parking.ui.parkinglots.ParkingLotsCredentials
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
 import com.endava.parking.utils.Validator
