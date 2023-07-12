@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
-import com.endava.parking.data.model.User
 import com.endava.parking.databinding.FragmentSignInBinding
+import com.endava.parking.ui.parkinglots.ParkingLotsCredentials
 import com.endava.parking.ui.parkinglots.ParkingLotsFragment
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.makeTextClickable
@@ -93,24 +93,16 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
     }
 
     private fun setupObservers() {
-        viewModel.validationStates.observe(viewLifecycleOwner) { validationStateList ->
-            setErrorMessage(validationStateList)
-        }
-        viewModel.buttonEnabled.observe(viewLifecycleOwner) { isValidInput ->
-            binding.btnConfirm.isEnabled = isValidInput
-        }
-        viewModel.errorMessage.observe(viewLifecycleOwner) { stringId ->
-            requireContext().showToast(stringId)
-        }
+        viewModel.validationStates.observe(viewLifecycleOwner) { validationStateList -> setErrorMessage(validationStateList) }
+        viewModel.buttonEnabled.observe(viewLifecycleOwner) { isValidInput -> binding.btnConfirm.isEnabled = isValidInput }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { stringId -> requireContext().showToast(stringId) }
         viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
-
-//        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
+        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots(it) }
     }
 
-    private fun navigateToParkingLots() {
+    private fun navigateToParkingLots(credentials: ParkingLotsCredentials) {
         val bundle = Bundle()
-        // TODO. Change according to backend
-        bundle.putParcelable(ParkingLotsFragment.USER_KEY, User("Name", "w@w.w", "Ab12#", "12345678"))
+        bundle.putParcelable(ParkingLotsFragment.CREDENTIALS, credentials)
         findNavController().navigate(R.id.action_signInFragment_to_parkingLotsFragment, bundle)
     }
 

@@ -8,6 +8,7 @@ import com.endava.parking.R
 import com.endava.parking.data.UserRepository
 import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.UserRole
+import com.endava.parking.ui.parkinglots.ParkingLotsCredentials
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
 import com.endava.parking.utils.Validator
@@ -25,8 +26,8 @@ class SignInViewModel @Inject constructor(
     private val defaultAuthDataStore: DefaultAuthDataStore
 ): ViewModel()  {
 
-    private val _navigateToParkingLots = MutableLiveData<String>()   // TODO. Change according to backend
-    val navigateToParkingLots: LiveData<String> = _navigateToParkingLots
+    private val _navigateToParkingLots = MutableLiveData<ParkingLotsCredentials>()   // TODO. Change according to backend
+    val navigateToParkingLots: LiveData<ParkingLotsCredentials> = _navigateToParkingLots
 
     private val _validationStates: MutableLiveData<List<InputState>> = MutableLiveData()
     val validationStates: LiveData<List<InputState>>
@@ -75,13 +76,18 @@ class SignInViewModel @Inject constructor(
                     }
                     defaultAuthDataStore.putUserRole(userRole = userRole.role)
                     defaultAuthDataStore.putAuthToken(token = body)
-                    _navigateToParkingLots.value = UserRole.REGULAR.role
+                    val parkingLotsCredentials = ParkingLotsCredentials("token-qwerty...", UserRole.REGULAR)
+                    _navigateToParkingLots.value = parkingLotsCredentials
                 } else {
                     _serverErrorMessage.value = response.message()
                 }
             } catch (ex: Exception) {
                 _errorMessage.value = R.string.something_wrong_happened
                 ex.printStackTrace()
+
+                /** For test. Here because in Mock Flavor happens catch */
+                val parkingLotsCredentials = ParkingLotsCredentials("token-qwerty...", UserRole.REGULAR)
+                _navigateToParkingLots.value = parkingLotsCredentials
             }
         }
     }

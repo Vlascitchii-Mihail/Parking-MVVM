@@ -39,13 +39,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
 //        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
     }
 
-    private fun navigateToParkingLots() {
-        val bundle = Bundle()
-        // TODO. Change according to backend
-        bundle.putParcelable(ParkingLotsFragment.USER_KEY, User("Name", "w@w.w", "Ab12#", "12345678"))
-        findNavController().navigate(R.id.action_signInFragment_to_parkingLotsFragment, bundle)
-    }
-
     private fun setupViews() = with(binding) {
         signUpErrorHandler = SignUpErrorHandler(binding)
         btnConfirm.setOnClickListener { viewModel.validateUser(getUser()) }
@@ -77,6 +70,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             }
         )
         setupToolbarNavigation()
+    }
+
+    private fun navigateToParkingLots(resId: Int) {
+        requireContext().showToast(resources.getString(resId))
+        val bundle = Bundle()
+        bundle.putString(ParkingLotsFragment.USER_KEY, "token")
+        findNavController().navigate(R.id.action_signUpFragment_to_parkingLotsFragment, bundle)
     }
 
     private fun getUser(): User = User(

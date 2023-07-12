@@ -3,7 +3,7 @@ package com.endava.parking.repository.source
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.model.ParkingLevel
 import com.endava.parking.data.model.ParkingLot
-import com.endava.parking.data.model.User
+import retrofit2.Response
 import javax.inject.Inject
 
 class DefaultParkingRepository @Inject constructor() : ParkingRepository {
@@ -90,11 +90,11 @@ class DefaultParkingRepository @Inject constructor() : ParkingRepository {
         return Result.success("Parking ${parkingLot.name} was updated")
     }
 
-    override suspend fun deleteParkingLot(parkingLot: ParkingLot): Result<String> {
-        return Result.success("Parking ${parkingLot.name} was deleted")
+    override suspend fun deleteParkingLot(id: String): Response<String> {
+        return Response.success("Parking was deleted")
     }
 
-    override suspend fun fetchParkingLots(user: User): Result<ArrayList<ParkingLot>> {
-        return Result.success(data)
+    override suspend fun fetchParkingLots(token: String): Response<List<ParkingLot>> {
+        return Response.success(data)
     }
 }

@@ -2,7 +2,6 @@ package com.endava.parking.ui.parkinglots
 
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
@@ -15,7 +14,7 @@ import com.endava.parking.databinding.ItemParkingLotBinding
 import com.endava.parking.ui.utils.colorWorkingDays
 
 class ParkingLotsAdapter(
-    private val userRole: UserRole,
+    private var userRole: UserRole,
     private val onListItemClickListener: (String) -> Unit,
 ) : ListAdapter<ParkingLot, ParkingLotsAdapter.ViewHolder>(ListItemCallback()) {
 
@@ -32,11 +31,17 @@ class ParkingLotsAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
+    fun setUserRole(role: UserRole) { userRole = role }
+
     inner class ViewHolder(private val binding: ItemParkingLotBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: ParkingLot) {
             binding.apply {
+                parkingLotArrowIcon.isVisible = !(item.isClosed == true && userRole == UserRole.REGULAR)
+                if (item.isClosed == true && userRole == UserRole.REGULAR) root.setOnClickListener(null)
+                else { root.setOnClickListener{ onListItemClickListener(item.id) } }
+
                 /** Regular Mode */
                 parkingLotName.text = item.name
                 parkingLotOpenHours.text = "${item.startHour} - ${item.endHour}"
@@ -44,25 +49,17 @@ class ParkingLotsAdapter(
                 parkingLotOpenDays.colorWorkingDays(item.days, Color.RED)
                 availabilityIndicator.setTemporaryClosedMode(false)
                 availabilityIndicator.changeLevel(item.occupancyLevel)
-                parkingLotArrowIcon.isVisible = true
-                if (item.isClosed != true) root.setOnClickListener { onListItemClickListener(item.id) }
+
                 /** Non Stop */
                 if (item.isNonStop == true) {
                     parkingLotOpenHours.text = root.resources.getString(R.string.parking_lot_24_7)
-                    root.setOnClickListener { onListItemClickListener(item.id) }
                     parkingLotOpenDays.text = ""
+
                 /** Temporary Closed */
                 } else if (item.isClosed == true) {
                     availabilityIndicator.setTemporaryClosedMode(true)
                     parkingLotOpenDays.text = ""
                     parkingLotOpenHours.text = root.resources.getString(R.string.parking_lot_not_available)
-                    /** User - Admin */
-                    if (userRole == UserRole.ADMIN) {
-                        parkingLotArrowIcon.isVisible = true
-                        root.setOnClickListener { onListItemClickListener(item.id) }
-                    /** User - Regular */
-                    }
-                    if (userRole == UserRole.REGULAR) { parkingLotArrowIcon.isVisible = false }
                 }
             }
         }

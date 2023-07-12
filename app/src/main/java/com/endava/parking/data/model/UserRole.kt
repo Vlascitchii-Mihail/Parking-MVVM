@@ -1,8 +1,7 @@
 package com.endava.parking.data.model
 
-enum class UserRole(val role: String) {
+enum class UserRole(var role: String) {
     ADMIN("Admin"),
-    REGULAR("User"),
+    REGULAR("Regular"),
     INVALID("Invalid")
 }
-

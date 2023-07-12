@@ -2,7 +2,7 @@ package com.endava.parking.di
 
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.UserRepository
-import com.endava.parking.repository.DefaultParkingRepository
+import com.endava.parking.repository.source.DefaultParkingRepository
 import com.endava.parking.repository.source.DefaultUserRepository
 import dagger.Binds
 import dagger.Module
