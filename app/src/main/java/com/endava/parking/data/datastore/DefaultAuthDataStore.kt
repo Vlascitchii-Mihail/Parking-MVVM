@@ -43,6 +43,5 @@ class DefaultAuthDataStore @Inject constructor(private val context: Context): Au
     companion object {
         private const val KEY_USER_ROLE = "user_role"
         private const val KEY_AUTH_TOKEN = "auth_token"
-        private const val KEY_PARKING_DETAILS = "parking_details"
     }
 }

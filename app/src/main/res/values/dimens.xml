@@ -10,6 +10,7 @@
     <dimen name="margin_large">24dp</dimen>
 
     <!--    Custom margins-->
+    <dimen name="notification_top_margin">70dp</dimen>
     <dimen name="margin_spots_rv_grid">70dp</dimen>
     <dimen name="margin_sheet_radio_group">50dp</dimen>
     <dimen name="margin_sheet_spot_img">21dp</dimen>

@@ -6,6 +6,5 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ParkingLevel(
     val name: String,
-    val capacity: Int,
-    val spots: List<Spot>
+    val capacity: Int
 ): Parcelable

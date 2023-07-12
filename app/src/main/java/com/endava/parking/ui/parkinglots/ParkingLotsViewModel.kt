@@ -8,18 +8,17 @@ import com.endava.parking.R
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.QrNavigation
-import com.endava.parking.data.model.UserRole
 import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 import javax.inject.Inject
 
 @HiltViewModel
 class ParkingLotsViewModel @Inject constructor(
     private val parkingRepository: ParkingRepository,
-    private val authDataStore: AuthDataStore
 ) : ViewModel() {
+
+    private var parkingList: List<ParkingLot> = emptyList()
 
     private val _fetchParkingLots = MutableLiveData<List<ParkingLot>?>()
     val fetchParkingLots: LiveData<List<ParkingLot>?> = _fetchParkingLots
@@ -36,14 +35,17 @@ class ParkingLotsViewModel @Inject constructor(
     private val _progressBarVisibility = MutableLiveData<Boolean>()
     val progressBarVisibility: LiveData<Boolean> = _progressBarVisibility
 
-    fun fetchParkingLots(token: String) {
+    fun fetchParkingLots() {
         viewModelScope.launch {
             _progressBarVisibility.value = true
             try {
-                val response = parkingRepository.fetchParkingLots(token)
+                val response = parkingRepository.fetchParkingLots()
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
-                    _fetchParkingLots.value = body
+                    body.sortedBy { it.name.lowercase() }.let {
+                        _fetchParkingLots.value = it
+                        parkingList = it
+                    }
                 } else {
                     _serverErrorMessage.value = response.message()
                 }
@@ -53,6 +55,9 @@ class ParkingLotsViewModel @Inject constructor(
             _progressBarVisibility.value = false
         }
     }
+
+    fun searchParking(text: String) {
+        _fetchParkingLots.value = parkingList.filter { s -> s.name.lowercase().contains( text.lowercase() ) } }
 
     fun openSpotByQrCode(qrCode: String) {
         try {

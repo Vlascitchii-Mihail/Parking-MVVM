@@ -11,6 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/toolbar_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/notification_top_margin"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/Toolbar.Title"
@@ -58,16 +65,18 @@
                     android:layout_height="wrap_content"
                     android:inputType="textAutoComplete"
                     android:padding="@dimen/padding_medium"
-                    android:textColor="#000000"
-                    android:textColorLink="#FFFFFF" />
+                    android:textColor="@color/black"
+                    android:textColorLink="@color/white" />
             </com.google.android.material.textfield.TextInputLayout>
         </com.google.android.material.appbar.MaterialToolbar>
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_parking_lots"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_container"
             android:paddingHorizontal="@dimen/padding_medium"
             tools:listitem="@layout/item_parking_lot"/>
 
@@ -75,13 +84,13 @@
             android:id="@+id/tv_search_unsuccessful"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="@dimen/notification_top_margin"
             android:text="@string/parking_lots_search_empty"
             android:textColor="@color/dark_gray"
             android:textSize="18sp"
             android:textAlignment="center"
             android:paddingHorizontal="@dimen/padding_medium"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_container"
             tools:layout_editor_absoluteX="0dp"
             android:visibility="invisible"/>
 

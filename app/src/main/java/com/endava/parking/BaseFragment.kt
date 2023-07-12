@@ -30,9 +30,23 @@ abstract class BaseFragment<VB : ViewBinding>(
         return binding.root
     }
 
-    protected fun setOnKeyboardCloseListener(listener: () -> Unit) {
+    protected fun setOnKeyboardStateListener(
+        openListener: (() -> Unit?)? = null,
+        closeListener: (() -> Unit?)? = null
+    ) {
         keyboardManager = KeyboardManager(binding.root)
-        keyboardManager?.setOnCloseActionListener(listener)
+        keyboardManager?.setOnStateChangeActionListener(
+            openListener = { openListener?.invoke() },
+            closeListener = { closeListener?.invoke() }
+        )
+    }
+
+    protected fun showKeyboard() {
+        val view = activity?.currentFocus
+        val methodManager =
+            activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        assert(view != null)
+        methodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
     }
 
     protected fun hideKeyboard() {

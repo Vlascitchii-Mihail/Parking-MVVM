@@ -1,19 +1,15 @@
 package com.endava.parking.ui.parkinglots
 
 import android.app.AlertDialog
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
-import androidx.activity.addCallback
+import android.view.WindowManager
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
-import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.ParkingLot
+import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentParkingLotsBinding
 import com.endava.parking.ui.utils.showLongToast
@@ -41,6 +37,7 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
         userRole = args.userrole
 
         setupView()
@@ -51,13 +48,22 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
         setupToolbarNavigation()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity?.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+    }
+
     private fun fetchParkingList() { viewModel.fetchParkingLots() }
+
+    private val openKeyboardListener = { binding.fab.isVisible = false }
+    private val closeKeyboardListener = { binding.fab.isVisible = true }
 
     private fun setupView() {
         with (binding) {
-            ivToolbarSearch.setOnClickListener { showSearchToolbar() }
+            setOnKeyboardStateListener(openKeyboardListener, closeKeyboardListener)
+            ivToolbarSearch.setOnClickListener { showSearchBar() }
             inputSearchParking.addTextChangedListener { viewModel.searchParking(it.toString()) }
-            toolbarSearch.setNavigationOnClickListener { hideSearchToolbar() }
+            toolbarSearch.setNavigationOnClickListener { hideSearchBar() }
             swipeRefresh.setOnRefreshListener { fetchParkingList() }
             swipeRefresh.setColorSchemeColors(resources.getColor(R.color.pomegranate))
             val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
@@ -66,8 +72,32 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
             recyclerView.addItemDecoration(dividerItemDecoration)
             recyclerView.layoutManager = LinearLayoutManager(context)
             recyclerView.adapter = adapter
+            inputSearchParking.setText("")
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {}
+    }
+
+    private fun showSearchBar() {
+        with (binding) {
+            swipeRefresh.setOnRefreshListener { swipeRefresh.isRefreshing = false }
+            inputSearchParking.setText("")
+            toolbar.isVisible = false
+            toolbarSearch.isVisible = true
+            inputSearchParking.requestFocus()
+            fab.visibility = View.GONE
+        }
+        showKeyboard()
+    }
+
+    private fun hideSearchBar() {
+        with (binding) {
+            inputSearchParking.setText("")
+            toolbarSearch.visibility = View.INVISIBLE
+            toolbar.visibility = View.VISIBLE
+            fab.visibility = View.VISIBLE
+            swipeRefresh.setOnRefreshListener { fetchParkingList() }
+        }
+        hideKeyboard()
     }
 
     private fun setupFab() {
@@ -82,17 +112,18 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
                 fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fab_qr))
                 fab.setOnClickListener { performQrScanAction() }
             }
-            fab.isVisible = true
+            fab.show()
         }
     }
+
     private fun setupObservers() = with(viewModel) {
         openSpotByQrCode.observe(viewLifecycleOwner) { navigateToDetails(it) }
         progressBarVisibility.observe(viewLifecycleOwner) { binding.swipeRefresh.isRefreshing = it }
         serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showLongToast(it) }
         fetchParkingLots.observe(viewLifecycleOwner) {
             adapter.submitList(it)
-            setupFab()
-            binding.tvSearchUnsuccessful.isVisible = it.isEmpty()
+//            adapter.setData(it)
+            if (it != null) { binding.tvSearchUnsuccessful.isVisible = it.isEmpty() }
         }
     }
 
@@ -106,6 +137,9 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     private fun setupScanner() {
         qrScanIntegrator = IntentIntegrator.forSupportFragment(this)
         qrScanIntegrator.setPrompt(resources.getString(R.string.parking_lot_qr_prompt))
+        /**
+        QR code example -    {"parkingLot":"Endava","level":"Level A","parkingSpot":"A-012"}
+        */
     }
 
     private fun performQrScanAction() { qrScanIntegrator.initiateScan() }
@@ -117,14 +151,9 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     }
 
     private val adapterClickListener = { parkingLot: ParkingLot ->
-        val action = ParkingLotsFragmentDirections.actionParkingLotsFragmentToTabsFragment(userRole)
+        binding.inputSearchParking.setText("")
+        val action = ParkingLotsFragmentDirections.actionParkingLotsFragmentToMockFragment(parkingLot)
         findNavController().navigate(action)
-    }
-
-    private fun Context.hideKeyboard(view: View) {
-        val inputMethodManager =
-            getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun navigateToDetails(qrNavigation: QrNavigation) {

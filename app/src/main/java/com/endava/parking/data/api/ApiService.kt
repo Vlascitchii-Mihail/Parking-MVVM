@@ -4,7 +4,6 @@ import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.User
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -23,10 +22,6 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/Account/changepassword")
     suspend fun restorePassword(@Query("email") email: String): Response<String>
-
-    //TODO add function to get data for User Details Parking Lot
-    @GET("")
-    suspend fun getParkingLotDescription(@Header("Authorization") token: String?, parkingId: String): Response<ParkingLot>
 
     @GET("api/ParkingSpots/getspots")
     suspend fun getParkingSpots(
