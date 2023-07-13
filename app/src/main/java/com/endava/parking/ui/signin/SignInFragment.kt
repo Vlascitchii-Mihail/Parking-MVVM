@@ -99,10 +99,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
         viewModel.buttonEnabled.observe(viewLifecycleOwner) { isValidInput ->
             binding.btnConfirm.isEnabled = isValidInput
         }
-        viewModel.showToastEvent.observe(viewLifecycleOwner) { stringId ->
+        viewModel.errorMessage.observe(viewLifecycleOwner) { stringId ->
             requireContext().showToast(stringId)
         }
-        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
+        viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
+
+//        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
     }
 
     private fun navigateToParkingLots() {

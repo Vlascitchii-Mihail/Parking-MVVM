@@ -33,7 +33,8 @@ class RestorePassFragment : BaseFragment<FragmentRestorePassBinding>(FragmentRes
     private fun setupObservers() {
         viewModel.inputState.observe(viewLifecycleOwner) { handleErrorMessage(it) }
         viewModel.buttonEnableState.observe(viewLifecycleOwner) { binding.btnConfirm.isEnabled = it }
-        viewModel.showToastEvent.observe(viewLifecycleOwner) { requireContext().showToast(resources.getString(it)) }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { requireContext().showToast(resources.getString(it)) }
+        viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
     }
 
     private fun handleErrorMessage(state: EmailFieldState) {

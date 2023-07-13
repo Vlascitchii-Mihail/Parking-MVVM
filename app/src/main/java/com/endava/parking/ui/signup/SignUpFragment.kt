@@ -34,7 +34,16 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
     private fun setupObservers() {
         viewModel.inputStates.observe(viewLifecycleOwner) { signUpErrorHandler.setErrorStates(it) }
         viewModel.buttonEnableState.observe(viewLifecycleOwner) { binding.btnConfirm.isEnabled = it }
-        viewModel.showToastEvent.observe(viewLifecycleOwner) { navigateToParkingLots(it) }
+        viewModel.errorMessage.observe(viewLifecycleOwner) { requireContext().showToast(resources.getString(it)) }
+        viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
+//        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
+    }
+
+    private fun navigateToParkingLots() {
+        val bundle = Bundle()
+        // TODO. Change according to backend
+        bundle.putParcelable(ParkingLotsFragment.USER_KEY, User("Name", "w@w.w", "Ab12#", "12345678"))
+        findNavController().navigate(R.id.action_signInFragment_to_parkingLotsFragment, bundle)
     }
 
     private fun setupViews() = with(binding) {
@@ -68,13 +77,6 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
             }
         )
         setupToolbarNavigation()
-    }
-
-    private fun navigateToParkingLots(resId: Int) {
-        requireContext().showToast(resources.getString(resId))
-        val bundle = Bundle()
-        bundle.putParcelable(ParkingLotsFragment.USER_KEY, getUser())
-        findNavController().navigate(R.id.action_signUpFragment_to_parkingLotsFragment, bundle)
     }
 
     private fun getUser(): User = User(

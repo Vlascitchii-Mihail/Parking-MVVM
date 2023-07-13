@@ -24,8 +24,11 @@ class RestorePassViewModel @Inject constructor(
     private val _buttonEnableState = MutableLiveData<Boolean>()
     val buttonEnableState: LiveData<Boolean> = _buttonEnableState
 
-    private val _showToastEvent = MutableLiveData<Int>()
-    val showToastEvent: LiveData<Int> = _showToastEvent
+    private val _errorMessage = MutableLiveData<Int>()
+    val errorMessage: LiveData<Int> = _errorMessage
+
+    private val _serverErrorMessage = MutableLiveData<String>()
+    val serverErrorMessage: LiveData<String> = _serverErrorMessage
 
     fun checkButtonState(email: String) {
         _buttonEnableState.value = email != ""
@@ -33,10 +36,16 @@ class RestorePassViewModel @Inject constructor(
 
     fun validateEmail(email: String) {
         setErrorMessage(email)
-        if ( emailValidator.validate(email) ) {
+        if (emailValidator.validate(email)) {
             viewModelScope.launch {
-                repository.restorePassword(email)
-                _showToastEvent.value = R.string.restore_success_notification
+                try {
+                    val response = repository.restorePassword(email)
+                    if (!response.isSuccessful) _serverErrorMessage.value = response.message()
+
+                } catch (ex: Exception) {
+                    _errorMessage.value = R.string.something_wrong_happened
+                    ex.printStackTrace()
+                }
             }
         }
     }

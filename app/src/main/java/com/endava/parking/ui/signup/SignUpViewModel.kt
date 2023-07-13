@@ -8,9 +8,11 @@ import com.endava.parking.R
 import com.endava.parking.data.UserRepository
 import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.User
+import com.endava.parking.data.model.UserRole
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
 import com.endava.parking.utils.Validator
+import com.endava.parking.utils.getUserRole
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,13 +20,16 @@ import javax.inject.Named
 
 @HiltViewModel
 class SignUpViewModel @Inject constructor(
-    private val repository: UserRepository,
-    private val defaultAuthDataStore: DefaultAuthDataStore,
+    private val userRepository: UserRepository,
     @Named("Name") private val nameValidator: Validator,
     @Named("Email") private val emailValidator: Validator,
     @Named("Password") private val passwordValidator: Validator,
-    @Named("Phone") private val phoneValidator: Validator
+    @Named("Phone") private val phoneValidator: Validator,
+    private val defaultAuthDataStore: DefaultAuthDataStore
 ) : ViewModel() {
+
+    private val _navigateToParkingLots = MutableLiveData<String>()   // TODO. Change according to backend
+    val navigateToParkingLots: LiveData<String> = _navigateToParkingLots
 
     private val _inputStates = MutableLiveData<List<InputState>>()
     val inputStates: LiveData<List<InputState>> = _inputStates
@@ -32,8 +37,11 @@ class SignUpViewModel @Inject constructor(
     private val _buttonEnableState = MutableLiveData<Boolean>()
     val buttonEnableState: LiveData<Boolean> = _buttonEnableState
 
-    private val _showToastEvent = MutableLiveData<Int>()
-    val showToastEvent: LiveData<Int> = _showToastEvent
+    private val _errorMessage = MutableLiveData<Int>()
+    val errorMessage: LiveData<Int> = _errorMessage
+
+    private val _serverErrorMessage = MutableLiveData<String>()
+    val serverErrorMessage: LiveData<String> = _serverErrorMessage
 
     fun validateUser(user: User) {
         setErrorMessageStates(user)
@@ -44,15 +52,36 @@ class SignUpViewModel @Inject constructor(
             phoneValidator.validate(user.phone)
         ) {
             viewModelScope.launch {
-                val result = repository.signUp(user)
-                result
-                    .onSuccess {
-                        // TODO - extract user-role from token
-                        defaultAuthDataStore.putUserRole("admin")
+                try {
+                    val response = userRepository.signUp(user)
+                    val body = response.body()
+                    if (response.isSuccessful && body != null) {
+                        signIn(user.email, user.password)
+                    } else {
+                        _serverErrorMessage.value = response.message()
                     }
-                    .onFailure {  }
-                _showToastEvent.value = R.string.signup_user_was_submit
+                } catch (ex: Exception) {
+                    _errorMessage.value = R.string.something_wrong_happened
+                    ex.printStackTrace()
+                }
             }
+        }
+    }
+
+    private suspend fun signIn(emailInput: String, passInput: String) {
+        val response = userRepository.signIn(emailInput, passInput)
+        val body = response.body()
+        if (response.isSuccessful && body != null) {
+            val userRole = getUserRole(body)
+            if (userRole == UserRole.INVALID) {
+                _errorMessage.value = R.string.decoding_error
+                return
+            }
+            defaultAuthDataStore.putUserRole(userRole.role)
+            defaultAuthDataStore.putAuthToken(token = body)
+            _navigateToParkingLots.value = UserRole.REGULAR.role
+        } else {
+            _serverErrorMessage.value = response.message()
         }
     }
 

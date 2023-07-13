@@ -13,7 +13,6 @@ import com.endava.parking.R
 import com.endava.parking.data.model.User
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentParkingLotsBinding
-import com.endava.parking.ui.utils.showLongToast
 import com.endava.parking.ui.utils.showToast
 import com.google.zxing.integration.android.IntentIntegrator
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,14 +21,14 @@ import dagger.hilt.android.AndroidEntryPoint
 class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentParkingLotsBinding::inflate) {
 
     private val viewModel: ParkingLotsViewModel by viewModels()
-    private val adapter by lazy { ParkingLotsAdapter(user.userRole, adapterClickListener) }
+    private val adapter by lazy { ParkingLotsAdapter(UserRole.REGULAR, adapterClickListener) }
     private lateinit var qrScanIntegrator: IntentIntegrator
     private lateinit var user: User
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
-        setupFab()
+//        setupFab()
         setupScanner()
         setupObservers()
         fetchParkingList()
@@ -52,29 +51,29 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
         }
     }
 
-    private fun setupFab() {
-        with(binding) {
-            if (user.userRole == UserRole.ADMIN) {
-                fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fab_plus))
-                fab.setOnClickListener {
-                    requireContext().showLongToast("Create Parking !") // TODO replace with navigation to Create Parking
-                }
-            }
-            if (user.userRole == UserRole.REGULAR) {
-                fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fab_qr))
-                fab.setOnClickListener { performQrScanAction() }
-            }
-            fab.visibility = View.VISIBLE
-        }
-    }
+//    private fun setupFab() {
+//        with(binding) {
+//            if (user.userRole == UserRole.ADMIN) {
+//                fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fab_plus))
+//                fab.setOnClickListener {
+//                    requireContext().showLongToast("Create Parking !") // TODO replace with navigation to Create Parking
+//                }
+//            }
+//            if (user.userRole == UserRole.REGULAR) {
+//                fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fab_qr))
+//                fab.setOnClickListener { performQrScanAction() }
+//            }
+//            fab.visibility = View.VISIBLE
+//        }
+//    }
 
     private fun setupObservers() = with(viewModel) {
         openSpotByQrCode.observe(viewLifecycleOwner) { requireContext().showToast(it) } // TODO - remove toast. Only for test
         progressBarVisibility.observe(viewLifecycleOwner) { binding.swipeRefresh.isRefreshing = it }
         fetchParkingLots.observe(viewLifecycleOwner) {
-            user.userRole = UserRole.REGULAR    // TODO user status (admin/regular) must be extracted here !!!
+//            user.userRole = UserRole.REGULAR    // TODO user status (admin/regular) must be extracted here !!!
             adapter.submitList(it)
-            setupFab()
+//            setupFab()
         }
     }
 
@@ -101,13 +100,13 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     private val adapterClickListener = { parkingId: String ->
         val bundle = Bundle()
         bundle.putString("parkingId", parkingId)
-        if (user.userRole == UserRole.ADMIN) {
-            // TODO - replace with navigation to Admin Details
-            requireContext().showLongToast("User choose Parking Id - $parkingId, Admin - ${user.userRole}")
-        } else {
-            // TODO - replace with navigation to Regular Details
-            requireContext().showLongToast("User choose Parking Id - $parkingId, Admin - ${user.userRole}")
-        }
+//        if (user.userRole == UserRole.ADMIN) {
+//            // TODO - replace with navigation to Admin Details
+//            requireContext().showLongToast("User choose Parking Id - $parkingId, Admin - ${user.userRole}")
+//        } else {
+//            // TODO - replace with navigation to Regular Details
+//            requireContext().showLongToast("User choose Parking Id - $parkingId, Admin - ${user.userRole}")
+//        }
     }
 
     companion object { const val USER_KEY = "user" }
