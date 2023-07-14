@@ -29,8 +29,7 @@ class SignInViewModel @Inject constructor(
     val navigateToParkingLots: LiveData<String> = _navigateToParkingLots
 
     private val _validationStates: MutableLiveData<List<InputState>> = MutableLiveData()
-    val validationStates: LiveData<List<InputState>>
-        get() = _validationStates
+    val validationStates: LiveData<List<InputState>> get() = _validationStates
 
     private val _buttonEnabled = MutableLiveData<Boolean>()
     val buttonEnabled: LiveData<Boolean> get() = _buttonEnabled
@@ -76,9 +75,7 @@ class SignInViewModel @Inject constructor(
                     defaultAuthDataStore.putUserRole(userRole = userRole.role)
                     defaultAuthDataStore.putAuthToken(token = body)
                     _navigateToParkingLots.value = UserRole.REGULAR.role
-                } else {
-                    _serverErrorMessage.value = response.message()
-                }
+                } else _serverErrorMessage.value = response.errorBody()?.string()
             } catch (ex: Exception) {
                 _errorMessage.value = R.string.something_wrong_happened
                 ex.printStackTrace()

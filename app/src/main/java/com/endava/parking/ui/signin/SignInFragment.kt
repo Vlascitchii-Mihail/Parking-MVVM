@@ -103,7 +103,6 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding
             requireContext().showToast(stringId)
         }
         viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
-
 //        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
     }
 
