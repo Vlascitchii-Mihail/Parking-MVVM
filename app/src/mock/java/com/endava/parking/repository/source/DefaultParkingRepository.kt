@@ -346,4 +346,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
     ): Response<String> {
         return Response.success("User took a place")
     }
+
+    override suspend fun getParkingLot(token: String?, parkingLotId: String): Response<ParkingLot> {
+        return Response.success(data.filter { it.id == parkingLotId }.first())
+    }
 }

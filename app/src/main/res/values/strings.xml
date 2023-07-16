@@ -110,6 +110,9 @@
     <string name="details_user_accessible_family_spots">Number of Family Friendly Spots</string>
     <string name="label_working_hours_24_7">Operates 24/7</string>
 
+    <!--    Edit Parking Lot-->
+    <string name="delete_parking_lot">Delete</string>
+
     <!--    Days Names-->
     <string name="lot_admin_sunday">Sunday</string>
     <string name="lot_admin_monday">Monday</string>

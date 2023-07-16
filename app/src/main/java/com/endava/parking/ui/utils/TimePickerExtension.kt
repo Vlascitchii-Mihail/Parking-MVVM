@@ -1,7 +1,10 @@
 package com.endava.parking.ui.utils
 
 import android.content.Context
+import android.os.Bundle
 import android.text.format.DateFormat
+import androidx.core.os.bundleOf
+import com.endava.parking.ui.createparkinglot.FragmentCreateParkingLot
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.time.LocalDate
@@ -20,3 +23,7 @@ fun getTimePicker(context: Context, pickerTitle: String): MaterialTimePicker {
 fun getFormattedTime(hour: Int, minute: Int) =
     LocalDate.now().atTime(hour, minute)
         .format(DateTimeFormatter.ofPattern("HH:mm"))
+
+//fun newInstance(actionType: String) = FragmentCreateParkingLot().apply {
+//    arguments = bundleOf(FragmentCreateParkingLot.ACTION_TYPE to actionType)
+//}

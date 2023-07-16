@@ -26,4 +26,7 @@ interface ParkingRepository {
         parkingLotName: String,
         levelName: String
     ): Response<String>
+
+    suspend fun getParkingLot(token: String?, parkingLotId: String): Response<ParkingLot>
+
 }

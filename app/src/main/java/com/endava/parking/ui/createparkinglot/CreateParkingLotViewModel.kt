@@ -8,6 +8,7 @@ import com.endava.parking.R
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.ParkingLevelToRequest
+import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.model.ParkingLotToRequest
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
@@ -43,6 +44,9 @@ class CreateParkingLotViewModel @Inject constructor(
 
     private val _serverErrorMessage = MutableLiveData<String>()
     val serverErrorMessage: LiveData<String> = _serverErrorMessage
+
+    private var _parkingLotInstance: MutableLiveData<ParkingLot> = MutableLiveData()
+    val parkingLotInstance: LiveData<ParkingLot> get() = _parkingLotInstance
 
     fun checkButtonState(isEmptyFields: Boolean) {
         _buttonEnabled.value = isEmptyFields
@@ -135,6 +139,21 @@ class CreateParkingLotViewModel @Inject constructor(
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
                     //TODO navigate to ParkingLotList
+                } else _serverErrorMessage.value = response.errorBody()?.string()
+            } catch (ex: Exception) {
+                _errorMessage.value = R.string.something_wrong_happened
+                ex.printStackTrace()
+            }
+        }
+    }
+
+    fun getParkingLot(parkingLotId: String) {
+        viewModelScope.launch {
+            try {
+                val response = parkingRepository.getParkingLot(defaultAuthDataStore.getAuthToken(), parkingLotId)
+                val body = response.body()
+                if (response.isSuccessful && body != null) {
+                    body.let { _parkingLotInstance.value = it }
                 } else _serverErrorMessage.value = response.errorBody()?.string()
             } catch (ex: Exception) {
                 _errorMessage.value = R.string.something_wrong_happened

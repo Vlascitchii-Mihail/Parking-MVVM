@@ -68,6 +68,23 @@ class CheckDaysHandler(private val context: Context, attr: AttributeSet? = null)
         return dayList
     }
 
+    fun setCheckedDays(daysList: List<String>) = with(binding) {
+        daysList.forEach { dayName ->
+            with(context) {
+                when(dayName) {
+                    getString(DayName.SUNDAY.dayId) -> chbParkingSunday.isChecked = true
+                    getString(DayName.MONDAY.dayId) -> chbParkingMonday.isChecked = true
+                    getString(DayName.TUESDAY.dayId) -> chbParkingTuesday.isChecked = true
+                    getString(DayName.WEDNESDAY.dayId) -> chbParkingWednesday.isChecked = true
+                    getString(DayName.THURSDAY.dayId) -> chbParkingThursday.isChecked = true
+                    getString(DayName.FRIDAY.dayId) -> chbParkingFriday.isChecked = true
+                    getString(DayName.SATURDAY.dayId) -> chbParkingSaturday.isChecked = true
+                }
+            }
+        }
+    }
+
+
     fun checkCheckboxesTicked(isCheckedNonStop: Boolean) = (isCheckedNonStop || getCheckedDaysCheckBoxes())
 
     private fun getCheckedDaysCheckBoxes(): Boolean {

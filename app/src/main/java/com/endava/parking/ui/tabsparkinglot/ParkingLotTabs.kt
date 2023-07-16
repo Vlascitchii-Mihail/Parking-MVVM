@@ -24,7 +24,7 @@ class ParkingLotTabs : BaseFragment<FragmentParkingLotTabsBinding>(
         val appCompatActivity = activity as AppCompatActivity
         appCompatActivity.setSupportActionBar(toolbarParkingTabs)
 
-        val tabPagerAdapter = TabPagerAdapter(this@ParkingLotTabs)
+        val tabPagerAdapter = TabPagerAdapter(this@ParkingLotTabs, testNavigationGetUserRoleParkingList())
         vpgParkingTabs.adapter = tabPagerAdapter
 
         tabLayoutMediator = TabLayoutMediator(tlParkingTabs, vpgParkingTabs) { tab, position ->
@@ -36,6 +36,10 @@ class ParkingLotTabs : BaseFragment<FragmentParkingLotTabsBinding>(
         }
         tabLayoutMediator.attach()
     }
+
+    //TODO receive from navigation
+    private fun testNavigationGetUserRoleParkingList() = "Admin"
+
 
     override fun onDestroy() {
         super.onDestroy()
