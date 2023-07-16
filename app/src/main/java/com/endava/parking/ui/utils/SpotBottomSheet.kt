@@ -7,6 +7,8 @@ import com.endava.parking.R
 import com.endava.parking.data.model.Spot
 import com.endava.parking.data.model.SpotType
 import com.endava.parking.data.model.UserRole
+import com.endava.parking.databinding.BottomAdminCallSheetBinding
+import com.endava.parking.databinding.BottomAdminUpdateSheetBinding
 import com.endava.parking.databinding.BottomUserSheetBinding
 import com.endava.parking.ui.spotslist.SpotsAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -14,21 +16,32 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 class SpotBottomSheet(
     private val context: Context,
     private val spot: Spot,
-    private val uerRole: String? = UserRole.REGULAR.role
+    userRole: String? = UserRole.REGULAR.role
 ) {
 
+    private val role = userRole
     private val dialog = BottomSheetDialog(context)
     private lateinit var binding: ViewBinding
 
     init {
         //will inflate different views in the future
-        when (uerRole) {
+        when (userRole) {
             UserRole.REGULAR.role -> {
                 binding = BottomUserSheetBinding.inflate(LayoutInflater.from(context))
                 createUserParkingViewSheet()
                 dialog.setContentView((binding as BottomUserSheetBinding).root)
             }
-            else -> {}
+            UserRole.ADMIN.role -> {
+                if (spot.busy) {
+                    binding = BottomAdminCallSheetBinding.inflate(LayoutInflater.from(context))
+                    createAdminCallSheet()
+                    dialog.setContentView((binding as BottomAdminCallSheetBinding).root)
+                } else {
+                    binding = BottomAdminUpdateSheetBinding.inflate(LayoutInflater.from(context))
+                    createAdminUpdateViewSheet()
+                    dialog.setContentView((binding as BottomAdminUpdateSheetBinding).root)
+                }
+            }
         }
     }
 
@@ -41,6 +54,18 @@ class SpotBottomSheet(
             imgSheetType.setImageResource(SpotsAdapter.ParkingLotViewHolder.getSpotImageId(spot.spotType))
         }
     }
+    private fun createAdminCallSheet() {
+        with(binding as BottomAdminCallSheetBinding) {
+            tvSheetSpotName.text = spot.spotName
+            tvName.text = "---USER---"
+        }
+    }
+
+    private fun createAdminUpdateViewSheet() {
+        with(binding as BottomAdminUpdateSheetBinding) {
+            tvSheetSpotName.text = spot.spotName
+        }
+    }
 
     private fun getSpotsTypeName(spotType: SpotType): String {
         return when (spotType) {
@@ -51,9 +76,24 @@ class SpotBottomSheet(
         }
     }
 
-    fun setUserSheetButtonListener(takeUpSpot: () -> Unit) {
-        (binding as BottomUserSheetBinding).btnSheetPark.setOnClickListener {
-            takeUpSpot.invoke()
+    fun setUserSheetButtonListener(buttonClickAction: () -> Unit) {
+        when (role) {
+            UserRole.REGULAR.role -> {
+                (binding as BottomUserSheetBinding).btnSheetPark.setOnClickListener {
+                    buttonClickAction.invoke()
+                }
+            }
+            UserRole.ADMIN.role -> {
+                if (spot.busy) {
+                    (binding as BottomAdminCallSheetBinding).btnCall.setOnClickListener {
+                        buttonClickAction.invoke()
+                    }
+                } else {
+                    (binding as BottomAdminUpdateSheetBinding).btnCall.setOnClickListener {
+                        buttonClickAction.invoke()
+                    }
+                }
+            }
         }
     }
 }

@@ -9,10 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.endava.parking.R
 import com.endava.parking.data.model.Spot
 import com.endava.parking.data.model.SpotType
+import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.ParkingLotItemBinding
 
 class SpotsAdapter(private val click: (spot: Spot) -> Unit) :
     ListAdapter<Spot, SpotsAdapter.ParkingLotViewHolder>(SpotsDiffCallback()) {
+
+    /** For test */
+    companion object {
+        private val userRole = UserRole.REGULAR.role
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ParkingLotViewHolder =
         ParkingLotViewHolder.inflateFrom(parent)
@@ -30,9 +36,15 @@ class SpotsAdapter(private val click: (spot: Spot) -> Unit) :
                 (flImgContainer.getChildAt(FIRST_CHILD) as ImageView).setImageResource(getSpotImageId(item.spotType))
                 tvSpotName.text = item.spotName
 
-                if (item.spotType != SpotType.TEMPORARY_CLOSED && !item.busy) {
+                /** ADMIN */
+                if (userRole == UserRole.ADMIN.role) {
                     root.setOnClickListener { click(item) }
-                }
+                } else root.setOnClickListener(null)
+
+                /** REGULAR */
+                if (userRole == UserRole.REGULAR.role && item.spotType != SpotType.TEMPORARY_CLOSED && !item.busy) {
+                    root.setOnClickListener { click(item) }
+                } else root.setOnKeyListener(null)
             }
         }
 

@@ -12,6 +12,7 @@ import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.data.model.ParkingLevel
 import com.endava.parking.data.model.Spot
+import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentSpotsDetailsBinding
 import com.endava.parking.ui.utils.SpotBottomSheet
 import com.endava.parking.ui.utils.showToast
@@ -33,7 +34,7 @@ class SpotsFragment : BaseFragment<FragmentSpotsDetailsBinding>(
         setupView()
     }
 
-    //test function simulate receiving ID from ParkingListFragment and getting
+    // test function simulate receiving ID from ParkingListFragment and getting
     // the Parking item from the server using ID
     private fun getParkingIdFromParkingList() = listOf("Endava Tower Parking Lot", "Level A")
 
@@ -122,13 +123,12 @@ class SpotsFragment : BaseFragment<FragmentSpotsDetailsBinding>(
     }
 
     private fun createBottomSheetDialog(spot: Spot, larkingLotName: String, levelName: String) {
-        val bottomSheetDialog = SpotBottomSheet(requireContext(), spot, viewModel.getUerRole())
+        val bottomSheetDialog = SpotBottomSheet(requireContext(), spot, UserRole.REGULAR.role)
         bottomSheetDialog.setUserSheetButtonListener {
             viewModel.takeUpSpot(spot.spotName, spot.spotType.toString(), larkingLotName, levelName) { responseMessage: String ->
                 requireContext().showToast(responseMessage)
             }
         }
-
         bottomSheetDialog.getDialog().show()
     }
 
