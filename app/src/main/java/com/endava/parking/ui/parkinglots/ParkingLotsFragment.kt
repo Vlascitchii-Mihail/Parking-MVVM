@@ -1,9 +1,7 @@
 package com.endava.parking.ui.parkinglots
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -23,7 +21,6 @@ import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.ParkingLot
-import com.endava.parking.data.model.QrNavigation
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentParkingLotsBinding
 import com.endava.parking.ui.utils.showLongToast
@@ -55,7 +52,6 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     private fun fetchParkingList() { viewModel.fetchParkingLots() }
 
     private fun setupView() {
-        user = checkNotNull(arguments?.getParcelable(USER_KEY))
         with (binding) {
             swipeRefresh.setOnRefreshListener { fetchParkingList() }
             swipeRefresh.setColorSchemeColors(resources.getColor(R.color.pomegranate))
