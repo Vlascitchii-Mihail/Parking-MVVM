@@ -58,7 +58,7 @@ class SignUpViewModel @Inject constructor(
                     if (response.isSuccessful && body != null) {
                         signIn(user.email, user.password)
                     } else {
-                        _serverErrorMessage.value = response.message()
+                        _serverErrorMessage.value = response.errorBody()?.string()
                     }
                 } catch (ex: Exception) {
                     _errorMessage.value = R.string.something_wrong_happened
@@ -81,7 +81,7 @@ class SignUpViewModel @Inject constructor(
             defaultAuthDataStore.putAuthToken(token = body)
             _navigateToParkingLots.value = UserRole.REGULAR.role
         } else {
-            _serverErrorMessage.value = response.message()
+            _serverErrorMessage.value = response.errorBody()?.string()
         }
     }
 

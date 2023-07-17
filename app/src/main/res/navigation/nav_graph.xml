@@ -15,8 +15,7 @@
             app:destination="@id/signUpFragment"/>
         <action
             android:id="@+id/action_welcomeScreenFragment_to_SignInFragment"
-            app:destination="@id/signInFragment">
-        </action>
+            app:destination="@id/signInFragment"/>
     </fragment>
 
     <fragment

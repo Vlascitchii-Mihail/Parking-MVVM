@@ -40,8 +40,7 @@ class RestorePassViewModel @Inject constructor(
             viewModelScope.launch {
                 try {
                     val response = repository.restorePassword(email)
-                    if (!response.isSuccessful) _serverErrorMessage.value = response.message()
-
+                    if (!response.isSuccessful) _serverErrorMessage.value = response.errorBody()?.string()
                 } catch (ex: Exception) {
                     _errorMessage.value = R.string.something_wrong_happened
                     ex.printStackTrace()

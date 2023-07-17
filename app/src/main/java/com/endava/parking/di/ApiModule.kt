@@ -21,7 +21,7 @@ class ApiModule {
 
     @Named("baseUrl")
     @Provides
-    fun provideBaseUrl() = "http://backend.parking-lot1.app.mddinternship.com/"
+    fun provideBaseUrl() = "https://backend.parking-lot1.app.mddinternship.com/"
 
     /**  Only for test  */
 

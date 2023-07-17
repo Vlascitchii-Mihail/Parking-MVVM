@@ -3,9 +3,8 @@ package com.endava.parking.data.api
 import com.endava.parking.data.model.User
 import retrofit2.Response
 import retrofit2.http.Body
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface ApiService {
 
@@ -15,7 +14,6 @@ interface ApiService {
     @POST("api/Account/login")
     suspend fun signInUser(@Body user: Map<String, String>): Response<String>
 
-    @FormUrlEncoded
     @POST("api/Account/changepassword")
-    suspend fun restorePassword(@Field("email") email: String): Response<String>
+    suspend fun restorePassword(@Query("email") email: String): Response<String>
 }
