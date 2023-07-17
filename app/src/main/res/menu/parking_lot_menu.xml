@@ -6,4 +6,10 @@
         android:title="@string/delete_parking_lot"
         android:icon="@drawable/trash_holder"
         app:showAsAction="ifRoom|collapseActionView"/>
+
+    <item android:id="@+id/search_parking_spots"
+        android:title="@string/search_parking_spot"
+        android:icon="@drawable/menu_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 </menu>

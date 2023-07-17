@@ -10,6 +10,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="white_30">#CCFFFFFF</color>
     <color name="white_80">#CCFFFFFF</color>
+    <color name="search_view">#EDEDED</color>
 
     <color name="pomegranate">#F44336</color>
     <color name="pomegranate_30">#4DF44336</color>

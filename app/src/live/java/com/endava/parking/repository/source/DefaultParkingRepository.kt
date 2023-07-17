@@ -44,4 +44,8 @@ class DefaultParkingRepository @Inject constructor(
     ): Response<String> {
         return apiService.takeUpSpot(token, mapOf("name" to spotName, "typeName" to spotType, "parkingName" to parkingLotName, "levelName" to levelName))
     }
+
+    override suspend fun getParkingLot(token: String?, parkingLotId: String): Response<ParkingLot> {
+        TODO("Not yet implemented")
+    }
 }

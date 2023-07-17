@@ -1,16 +1,11 @@
 package com.endava.parking.ui.createparkinglot
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ScrollView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
-import androidx.core.view.MenuHost
-import androidx.core.view.MenuProvider
 import androidx.core.view.children
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
@@ -222,20 +217,6 @@ class FragmentCreateParkingLot : BaseFragment<FragmentCreateParkingBinding>(Frag
         val param = inputParkingName.layoutParams as ViewGroup.MarginLayoutParams
         param.setMargins(MARGIN_ZERO, R.dimen.margin_large, MARGIN_ZERO, MARGIN_ZERO)
         binding.createParkingContainer.inputParkingName.layoutParams = param
-
-        (requireActivity() as MenuHost).addMenuProvider(object: MenuProvider {
-            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(R.menu.parking_lot_menu, menu)
-            }
-
-            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-                when (menuItem.itemId) {
-                    R.id.menu_delete_parking_lot -> {}//TODO add code
-                }
-                return false
-            }
-
-        }, viewLifecycleOwner)
 
         inputParkingName.setText(parkingLot.name)
         inputParkingAddress.setText(parkingLot.address)

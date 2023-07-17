@@ -8,6 +8,7 @@ import com.endava.parking.R
 import com.endava.parking.data.model.ParkingLot
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.datastore.DefaultAuthDataStore
+import com.endava.parking.data.model.Spot
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -27,6 +28,8 @@ class SpotsViewModel @Inject constructor(
     private val _serverErrorMessage = MutableLiveData<String>()
     val serverErrorMessage: LiveData<String> get() = _serverErrorMessage
     lateinit var lotDescription: List<String>
+
+    lateinit var levelSpots: List<Spot>
 
     fun getParkingSpots() {
         viewModelScope.launch {

@@ -39,7 +39,8 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
     private fun fetchParkingList() { viewModel.fetchParkingLots(user) }
 
     private fun setupView() {
-        user = checkNotNull(arguments?.getParcelable(USER_KEY))
+//        user = checkNotNull(arguments?.getParcelable(USER_KEY))
+        user = User("Marty", "martyMcFly@gmail.com","Marty!1A", "066666666")
         with (binding) {
             swipeRefresh.setOnRefreshListener { fetchParkingList() }
             val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
@@ -102,6 +103,7 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
         val bundle = Bundle()
         bundle.putString("parkingId", parkingId)
 //        if (user.userRole == UserRole.ADMIN) {
+        findNavController().navigate(R.id.action_parkingLotsFragment_to_tabsFragment)
 //            // TODO - replace with navigation to Admin Details
 //            requireContext().showLongToast("User choose Parking Id - $parkingId, Admin - ${user.userRole}")
 //        } else {

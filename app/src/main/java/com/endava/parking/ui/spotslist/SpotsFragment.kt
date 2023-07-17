@@ -40,9 +40,10 @@ class SpotsFragment : BaseFragment<FragmentSpotsDetailsBinding>(
     private fun setupView() {
         setObservers()
         setupRecyclerView()
+
+        //todo: add to LiveData listeners
         viewModel.parkingLotInstance.value?.let { parkingLot ->
             setupSpinnerAppearance(parkingLot.levels)
-            setupSpinner(parkingLot.levels)
         }
     }
 
@@ -51,11 +52,14 @@ class SpotsFragment : BaseFragment<FragmentSpotsDetailsBinding>(
             spotsListAdapter.submitList(levels.first().spots)
             View.GONE
         }
-        else View.VISIBLE
+        else {
+            setupSpinner(levels)
+            View.VISIBLE
+        }
     }
 
     private fun setupSpinner(levels: List<ParkingLevel>) = with(binding){
-        val levelsMap = getLevelsName(levels)
+        val levelsMap = getLevelsMap(levels)
         val spinnerAdapter = ArrayAdapter(
             requireContext(),
             androidx.appcompat.R.layout.support_simple_spinner_dropdown_item,
@@ -73,14 +77,15 @@ class SpotsFragment : BaseFragment<FragmentSpotsDetailsBinding>(
                 position: Int,
                 id: Long
             ) {
-                spotsListAdapter.submitList(levelsList[position])
+                viewModel.levelSpots = levelsList[position]
+                spotsListAdapter.submitList(viewModel.levelSpots)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
 
-    private fun getLevelsName(levels: List<ParkingLevel>): MutableMap<String, List<Spot>> {
+    private fun getLevelsMap(levels: List<ParkingLevel>): MutableMap<String, List<Spot>> {
         val levelsName = mutableMapOf<String, List<Spot>>()
         levels.forEach { level ->
             levelsName[level.name] = level.spots
@@ -135,6 +140,11 @@ class SpotsFragment : BaseFragment<FragmentSpotsDetailsBinding>(
     private fun setObservers() {
         viewModel.errorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
         viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
+    }
+
+    fun searchSpot(spotName: String) {
+        val foundSpots = viewModel.levelSpots.filter { it.spotName.contains(spotName) }
+        spotsListAdapter.submitList(foundSpots)
     }
 
     companion object {
