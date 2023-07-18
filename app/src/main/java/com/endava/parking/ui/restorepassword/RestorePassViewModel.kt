@@ -24,8 +24,8 @@ class RestorePassViewModel @Inject constructor(
     private val _buttonEnableState = MutableLiveData<Boolean>()
     val buttonEnableState: LiveData<Boolean> = _buttonEnableState
 
-    private val _errorMessage = MutableLiveData<Int>()
-    val errorMessage: LiveData<Int> = _errorMessage
+    private val _resultMessage = MutableLiveData<Int>()
+    val resultMessage: LiveData<Int> = _resultMessage
 
     private val _serverErrorMessage = MutableLiveData<String>()
     val serverErrorMessage: LiveData<String> = _serverErrorMessage
@@ -41,8 +41,9 @@ class RestorePassViewModel @Inject constructor(
                 try {
                     val response = repository.restorePassword(email)
                     if (!response.isSuccessful) _serverErrorMessage.value = response.errorBody()?.string()
+                    else _resultMessage.value = R.string.restore_send_password
                 } catch (ex: Exception) {
-                    _errorMessage.value = R.string.something_wrong_happened
+                    _resultMessage.value = R.string.something_wrong_happened
                     ex.printStackTrace()
                 }
             }

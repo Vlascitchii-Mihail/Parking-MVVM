@@ -48,6 +48,7 @@
     <string name="error_message_email">Email doesn`t match the conditions</string>
     <string name="error_message_phone_8_digits">Phone must have 8 digits</string>
     <string name="error_message_phone_only_digits">Phone should accept only digits </string>
+    <string name="restore_send_password">A new password has been sent to your email</string>
 
     <!--    Parking Lots-->
     <string name="parking_lots_title">Parking Lots</string>

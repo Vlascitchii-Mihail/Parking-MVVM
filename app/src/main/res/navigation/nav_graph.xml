@@ -45,7 +45,8 @@
         android:id="@+id/restorePassword"
         android:name="com.endava.parking.ui.restorepassword.RestorePassFragment"
         android:label="Restore Password"
-        tools:layout="@layout/fragment_restore_pass"/>
+        tools:layout="@layout/fragment_restore_pass">
+    </fragment>
 
     <fragment
         android:id="@+id/parkingLotsFragment"

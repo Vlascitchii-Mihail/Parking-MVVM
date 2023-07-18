@@ -10,6 +10,7 @@ import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
+import com.endava.parking.ui.utils.SingleEventLiveData
 import com.endava.parking.utils.Validator
 import com.endava.parking.utils.getUserRole
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,10 +35,10 @@ class SignInViewModel @Inject constructor(
     private val _buttonEnabled = MutableLiveData<Boolean>()
     val buttonEnabled: LiveData<Boolean> get() = _buttonEnabled
 
-    private val _errorMessage = MutableLiveData<Int>()
+    private val _errorMessage = SingleEventLiveData<Int>()
     val errorMessage: LiveData<Int> = _errorMessage
 
-    private val _serverErrorMessage = MutableLiveData<String>()
+    private val _serverErrorMessage = SingleEventLiveData<String>()
     val serverErrorMessage: LiveData<String> = _serverErrorMessage
 
     fun validateInput(emailInput: String, passInput: String) {
