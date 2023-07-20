@@ -34,6 +34,7 @@
             style="@style/Input.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="stambulo@yandex.ru"
             android:hint="@string/generic_email_hint"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -56,6 +57,7 @@
             style="@style/Input.Primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Ab123$."
             android:hint="@string/generic_password_label"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -75,7 +77,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_terms_conditions"
-        style="@style/Text"
+        style="@style/TextMediumCentered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_medium"

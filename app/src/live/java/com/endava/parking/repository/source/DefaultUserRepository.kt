@@ -6,9 +6,6 @@ import com.endava.parking.data.model.User
 import retrofit2.Response
 import javax.inject.Inject
 
-/**
- * Live Repository, will be fulfilled in the future, with backend
- */
 class DefaultUserRepository @Inject constructor(
     private val apiService: ApiService
 ) : UserRepository {

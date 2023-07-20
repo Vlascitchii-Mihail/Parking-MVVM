@@ -10,7 +10,6 @@ import com.endava.parking.data.datastore.DefaultAuthDataStore
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
-import com.endava.parking.ui.utils.SingleEventLiveData
 import com.endava.parking.utils.Validator
 import com.endava.parking.utils.getUserRole
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -26,19 +25,19 @@ class SignInViewModel @Inject constructor(
     private val defaultAuthDataStore: DefaultAuthDataStore
 ): ViewModel()  {
 
-    private val _navigateToParkingLots = MutableLiveData<String>()   // TODO. Change according to backend
-    val navigateToParkingLots: LiveData<String> = _navigateToParkingLots
+    private val _navigateToParkingLots = MutableLiveData<UserRole>()
+    val navigateToParkingLots: LiveData<UserRole> = _navigateToParkingLots
 
     private val _validationStates: MutableLiveData<List<InputState>> = MutableLiveData()
-    val validationStates: LiveData<List<InputState>> get() = _validationStates
+    val validationStates: LiveData<List<InputState>> = _validationStates
 
     private val _buttonEnabled = MutableLiveData<Boolean>()
     val buttonEnabled: LiveData<Boolean> get() = _buttonEnabled
 
-    private val _errorMessage = SingleEventLiveData<Int>()
+    private val _errorMessage = MutableLiveData<Int>()
     val errorMessage: LiveData<Int> = _errorMessage
 
-    private val _serverErrorMessage = SingleEventLiveData<String>()
+    private val _serverErrorMessage = MutableLiveData<String>()
     val serverErrorMessage: LiveData<String> = _serverErrorMessage
 
     fun validateInput(emailInput: String, passInput: String) {
@@ -64,23 +63,27 @@ class SignInViewModel @Inject constructor(
 
     private fun signIn(emailInput: String, passInput: String) {
         viewModelScope.launch {
+            _buttonEnabled.value = false
             try {
                 val response = userRepository.signIn(emailInput, passInput)
-                val body = response.body()
-                if (response.isSuccessful && body != null) {
-                    val userRole = getUserRole(body)
+                val token = response.body()
+                if (response.isSuccessful && token != null) {
+                    val userRole = getUserRole(token)
                     if (userRole == UserRole.INVALID) {
                         _errorMessage.value = R.string.decoding_error
                         return@launch
                     }
                     defaultAuthDataStore.putUserRole(userRole = userRole.role)
-                    defaultAuthDataStore.putAuthToken(token = body)
-                    _navigateToParkingLots.value = UserRole.REGULAR.role
-                } else _serverErrorMessage.value = response.errorBody()?.string()
+                    defaultAuthDataStore.putAuthToken(token = token)
+                    _navigateToParkingLots.value = userRole
+                } else {
+                    _serverErrorMessage.value = response.errorBody()?.string()
+                }
             } catch (ex: Exception) {
                 _errorMessage.value = R.string.something_wrong_happened
                 ex.printStackTrace()
             }
+            _buttonEnabled.value = true
         }
     }
 }

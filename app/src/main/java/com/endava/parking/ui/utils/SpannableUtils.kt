@@ -47,15 +47,20 @@ fun TextView.makeTextClickable(
     this.text = spannableString
 }
 
-fun TextView.colorWorkingDays(days: List<String>?, color: Int) {
+fun TextView.colorWorkingDays(days: List<String>?, color: Int, mode24_7: Boolean) {
+
+    val workingDays: ArrayList<WorkingDay> = arrayListOf()
 
     /** Set week, as - not working */
-    val workingDays: ArrayList<WorkingDay> = arrayListOf()
-    for (i in 1..7) { workingDays.add(WorkingDay(i, false)) }
+    if (!mode24_7) {
+        for (i in 1..7) { workingDays.add(WorkingDay(i, false)) }
+    }
 
     /** Each day from backend, set as working day */
-    for (day in DaysOfWeek.values()) {
-        if (days?.contains(day.printableName) == true) { workingDays[day.ordinal].isWorking = true }
+    if (days?.isEmpty() == false) {
+        for (day in DaysOfWeek.values()) {
+            if (days.contains(day.printableName)) { workingDays[day.ordinal].isWorking = true }
+        }
     }
     val spannable = SpannableString(text)
     var start: Int

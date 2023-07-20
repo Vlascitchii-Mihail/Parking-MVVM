@@ -16,7 +16,7 @@ import kotlin.math.pow
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-private const val MIN_VALUE = 0
+private const val MIN_VALUE = 1
 private const val MAX_VALUE = 100
 private const val GREEN_YELLOW_THRESHOLD = 33
 private const val YELLOW_RED_THRESHOLD = 66
@@ -75,7 +75,7 @@ class AvailabilityIndicator @JvmOverloads constructor(
     }
 
     private fun adjustValue(value: Int) {
-        this.value = MAX_VALUE.coerceAtMost(MIN_VALUE.coerceAtLeast(value))
+        this.value = MAX_VALUE.coerceAtMost(MIN_VALUE.coerceAtLeast(value + 1))
     }
 
     private fun adjustColor(value: Int) {

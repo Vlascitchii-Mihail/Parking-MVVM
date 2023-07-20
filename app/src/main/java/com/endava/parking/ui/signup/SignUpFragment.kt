@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.endava.parking.BaseFragment
 import com.endava.parking.R
 import com.endava.parking.data.model.User
+import com.endava.parking.data.model.UserRole
 import com.endava.parking.databinding.FragmentSignUpBinding
-import com.endava.parking.ui.parkinglots.ParkingLotsFragment
 import com.endava.parking.ui.utils.makeTextClickable
 import com.endava.parking.ui.utils.showToast
 import com.endava.parking.utils.BlankSpacesInputFilter
@@ -36,14 +36,12 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(FragmentSignUpBinding
         viewModel.buttonEnableState.observe(viewLifecycleOwner) { binding.btnConfirm.isEnabled = it }
         viewModel.errorMessage.observe(viewLifecycleOwner) { requireContext().showToast(resources.getString(it)) }
         viewModel.serverErrorMessage.observe(viewLifecycleOwner) { requireContext().showToast(it) }
-//        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots() }
+        viewModel.navigateToParkingLots.observe(viewLifecycleOwner) { navigateToParkingLots(it) }
     }
 
-    private fun navigateToParkingLots() {
-        val bundle = Bundle()
-        // TODO. Change according to backend
-        bundle.putParcelable(ParkingLotsFragment.USER_KEY, User("Name", "w@w.w", "Ab12#", "12345678"))
-        findNavController().navigate(R.id.action_signInFragment_to_parkingLotsFragment, bundle)
+    private fun navigateToParkingLots(role: UserRole) {
+        val action = SignUpFragmentDirections.actionSignUpFragmentToParkingLotsFragment(role)
+        findNavController().navigate(action)
     }
 
     private fun setupViews() = with(binding) {

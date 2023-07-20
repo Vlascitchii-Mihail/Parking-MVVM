@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/padding_medium">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sheet_spot_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextMediumBlack"
+        android:layout_marginVertical="@dimen/margin_medium_extra"
+        app:layout_constraintBottom_toTopOf="@id/tv_sheet_type_topic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="A-003" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sheet_type_topic"
+        style="@style/TextMediumHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sheet_park_spot_type"
+        android:layout_marginStart="@dimen/margin_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/tv_sheet_type_field"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_sheet_type_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextMedium"
+        android:gravity="start"
+        android:layout_marginBottom="@dimen/margin_medium_extra"
+        android:layout_marginStart="@dimen/margin_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_sheet_park"
+        tools:text="@string/sheet_park_spot_family" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_sheet_type"
+        android:layout_width="@dimen/imv_sheet_type_height"
+        android:layout_height="@dimen/imv_sheet_type_height"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_sheet_park"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginBottom="@dimen/margin_sheet_spot_img"
+        tools:src="@drawable/stroller_10"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_sheet_park"
+        style="@style/Button.Primary"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/margin_medium"
+        android:text="@string/sheet_park_btn_park"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

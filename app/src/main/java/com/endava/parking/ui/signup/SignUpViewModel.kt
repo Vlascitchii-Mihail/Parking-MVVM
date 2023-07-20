@@ -28,8 +28,8 @@ class SignUpViewModel @Inject constructor(
     private val defaultAuthDataStore: DefaultAuthDataStore
 ) : ViewModel() {
 
-    private val _navigateToParkingLots = MutableLiveData<String>()   // TODO. Change according to backend
-    val navigateToParkingLots: LiveData<String> = _navigateToParkingLots
+    private val _navigateToParkingLots = MutableLiveData<UserRole>()
+    val navigateToParkingLots: LiveData<UserRole> = _navigateToParkingLots
 
     private val _inputStates = MutableLiveData<List<InputState>>()
     val inputStates: LiveData<List<InputState>> = _inputStates
@@ -52,6 +52,7 @@ class SignUpViewModel @Inject constructor(
             phoneValidator.validate(user.phone)
         ) {
             viewModelScope.launch {
+                _buttonEnableState.value = false
                 try {
                     val response = userRepository.signUp(user)
                     val body = response.body()
@@ -64,22 +65,23 @@ class SignUpViewModel @Inject constructor(
                     _errorMessage.value = R.string.something_wrong_happened
                     ex.printStackTrace()
                 }
+                _buttonEnableState.value = true
             }
         }
     }
 
     private suspend fun signIn(emailInput: String, passInput: String) {
         val response = userRepository.signIn(emailInput, passInput)
-        val body = response.body()
-        if (response.isSuccessful && body != null) {
-            val userRole = getUserRole(body)
+        val token = response.body()
+        if (response.isSuccessful && token != null) {
+            val userRole = getUserRole(token)
             if (userRole == UserRole.INVALID) {
                 _errorMessage.value = R.string.decoding_error
                 return
             }
             defaultAuthDataStore.putUserRole(userRole.role)
-            defaultAuthDataStore.putAuthToken(token = body)
-            _navigateToParkingLots.value = UserRole.REGULAR.role
+            defaultAuthDataStore.putAuthToken(token = token)
+            _navigateToParkingLots.value = userRole
         } else {
             _serverErrorMessage.value = response.errorBody()?.string()
         }

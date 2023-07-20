@@ -25,7 +25,6 @@
     <string name="signup_phone_hint">79123123</string>
     <string name="signup_phone_prefix">+373</string>
     <string name="signup_user_was_submit">User is valid and was submit to the server !</string>
-    <string name="server_create_error">User already exist</string>
 
     <!--    SignInScreen-->
     <string name="sign_in_forgot_pass_action">Forgot password</string>
@@ -33,7 +32,6 @@
     <string name="sign_in_wrong_pass">Enter the correct password</string>
     <string name="sign_in_pass_error_message">Should contain upper–case letter, number and a symbol, 5\u201510 characters</string>
     <string name="sign_in_confirm">The user has been successfully authenticated</string>
-    <string name="server_validation_error">User doesn\'t exist</string>
     <string name="decoding_error">Token decoding error</string>
 
     <!--    Forgot Password Screen-->
@@ -62,8 +60,53 @@
     <string name="parking_lot_search">Search Parking</string>
     <string name="parking_lot_qr_prompt">Please focus on the Parking QR Code</string>
     <string name="parking_lot_vacate">Vacate</string>
+    <string name="parking_lot_wrong_qr_error_message">Wrong QR code !</string>
     <string name="parking_lot_currently_parked">You are currently parked on spot</string>
 
     <!--    Server's Error messages-->
     <string name="something_wrong_happened">Something wrong happened</string>
+
+    <!--    ParkingLot Tabs-->
+    <string name="tabs_name">Mock Details</string>
+    <string name="tab_details">Details</string>
+    <string name="tab_parking_spots">Parking Spots</string>
+
+    <!--    ParkingLot User Details-->
+    <string name="details_user_address">Address</string>
+    <string name="details_user_address_hint">str. Arborilor 21, or. Chisinau</string>
+    <string name="details_user_working_days">Working Days</string>
+    <string name="details_user_working_hours">Working Hours</string>
+    <string name="details_user_levels">Levels</string>
+    <string name="details_user_levels_hint">2</string>
+    <string name="details_user_levels_spots_number_hint">23</string>
+    <string name="details_user_working_hours_hint">18:00 /- 08:00</string>
+    <string name="details_user_days_schedule">S/M/T/W/T/F/S</string>
+    <string name="details_user_accessible_parking_spots">Number of Accessible Parking Spots</string>
+    <string name="details_user_accessible_family_spots">Number of Family Friendly Spots</string>
+    <string name="label_working_hours_24_7">Operates 24/7</string>
+
+    <!--    Days Names-->
+    <string name="lot_admin_sunday">Sunday</string>
+    <string name="lot_admin_monday">Monday</string>
+    <string name="lot_admin_tuesday">Tuesday</string>
+    <string name="lot_admin_wednesday">Wednesday</string>
+    <string name="lot_admin_thursday">Thursday</string>
+    <string name="lot_admin_friday">Friday</string>
+    <string name="lot_admin_saturday">Saturday</string>
+
+    <!--    Bottom sheet-->
+    <string name="sheet_park_spot_type">Parking spot type</string>
+    <string name="sheet_park_visitors_name">Visitor`s name</string>
+    <string name="sheet_park_visitors_name_hint">John Doe</string>
+    <string name="sheet_park_spot_regular">Regular</string>
+    <string name="sheet_park_spot_family">Family Friendly</string>
+    <string name="sheet_park_spot_disable">Disabled</string>
+    <string name="sheet_park_spot_type_regular">Regular</string>
+    <string name="sheet_park_spot_type_family">Family Friendly</string>
+    <string name="sheet_park_spot_type_handicap">Handicap</string>
+    <string name="sheet_park_spot_type_closed">Temporary closed</string>
+    <string name="sheet_park_btn_park">Park here</string>
+    <string name="sheet_park_btn_call">Call</string>
+    <string name="sheet_park_btn_update">Update</string>
+
 </resources>

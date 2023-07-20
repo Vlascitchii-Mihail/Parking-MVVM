@@ -81,11 +81,31 @@
 
 
     <!--    TextView style-->
-    <style name="Text" parent="Widget.AppCompat.TextView">
+    <style name="Text" parent="Widget.AppCompat.TextView"/>
+
+    <style name="TextMediumCentered" parent="Text">
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/mulish_400</item>
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextMedium" parent="Text">
+        <item name="fontFamily">@font/mulish_400</item>
+        <item name="android:textColor">@color/sonic_silver</item>
+        <item name="android:textSize">@dimen/text_small</item>
+    </style>
+
+    <style name="TextMediumHeader" parent="Text">
+        <item name="fontFamily">@font/mulish_700</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_medium</item>
+    </style>
+
+    <style name="TextMediumBlack" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/mulish_400</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_medium_extra</item>
     </style>
 
 
@@ -94,6 +114,33 @@
         <item name="android:fontFamily">@font/mulish_300</item>
         <item name="android:textSize">@dimen/text_small</item>
         <item name="android:textColor">@color/black_80</item>
+    </style>
+
+
+    <!--    TabLayout style-->
+    <style name="TabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabTextAppearance">@style/TabTopic</item>
+        <item name="tabTextColor">@color/black</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabIndicatorColor">@color/pomegranate</item>
+        <item name="tabIndicatorFullWidth">true</item>
+    </style>
+
+    <style name="TabTopic" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">@dimen/text_medium_extra</item>
+        <item name="fontFamily">@font/mulish_700</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:gravity">start</item>
+    </style>
+
+
+    <!--    Bottom sheet dialog style-->
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
     </style>
 
 </resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.details.DetailsFragment">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/details_user_address"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        style="@style/TextMediumHeader"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_address_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        style="@style/TextMedium"
+        tools:text="@string/details_user_address_hint"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_working_hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/details_user_working_hours"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        style="@style/TextMediumHeader"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_working_hours_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        style="@style/TextMedium"
+        tools:text="@string/details_user_working_hours_hint"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_working_days"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/details_user_working_days"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        style="@style/TextMediumHeader"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_working_days_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        style="@style/TextMedium"
+        android:text="@string/details_user_days_schedule"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_accessible_spots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/details_user_accessible_parking_spots"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        style="@style/TextMediumHeader"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_accessible_spots_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        style="@style/TextMedium"
+        tools:text="@string/details_user_levels_spots_number_hint"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_accessible_family_spots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/details_user_accessible_family_spots"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        style="@style/TextMediumHeader"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_accessible_family_spots_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        style="@style/TextMedium"
+        tools:text="@string/details_user_levels_spots_number_hint"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_levels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/details_user_levels"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        style="@style/TextMediumHeader"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_details_levels_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        style="@style/TextMedium"
+        tools:text="@string/details_user_levels_hint"/>
+
+</LinearLayout>
