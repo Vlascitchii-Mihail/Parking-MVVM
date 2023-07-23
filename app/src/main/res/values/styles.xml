@@ -124,6 +124,9 @@
         <item name="android:textSize">@dimen/text_medium_extra</item>
     </style>
 
+    <style name="LotLevel" parent="Text">
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
 
     <!--    TextButton style-->
     <style name="ButtonText" parent="Widget.Material3.Button.TextButton">
@@ -132,6 +135,27 @@
         <item name="android:textColor">@color/black_80</item>
     </style>
 
+    <style name="ButtonTextLight" parent="ButtonText">
+        <item name="android:fontFamily">@font/mulish_300</item>
+    </style>
+
+    <style name="ButtonTextBold" parent="ButtonText">
+        <item name="android:fontFamily">@font/mulish_700</item>
+    </style>
+
+    <!--    Checkbox style-->
+    <style name="MyCheckboxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="theme">@style/MyCheckboxColor</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:fontFamily">@font/mulish_400</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="MyCheckboxColor" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/pomegranate</item>
+        <item name="android:textColorSecondary">@color/black_38</item>
+    </style>
 
     <!--    TabLayout style-->
     <style name="TabLayoutStyle" parent="Widget.MaterialComponents.TabLayout">

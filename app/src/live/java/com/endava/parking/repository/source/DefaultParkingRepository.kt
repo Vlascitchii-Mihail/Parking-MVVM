@@ -4,6 +4,8 @@ import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.api.ApiService
 import com.endava.parking.data.datastore.AuthDataStore
 import com.endava.parking.data.model.ParkingLot
+import com.endava.parking.data.model.ParkingLotToRequest
+import com.endava.parking.data.model.Spot
 import retrofit2.Response
 import javax.inject.Inject
 
@@ -12,8 +14,8 @@ class DefaultParkingRepository @Inject constructor(
     private val dataStore: AuthDataStore
 ) : ParkingRepository {
 
-    override suspend fun createParkingLot(parkingLot: ParkingLot): Response<String> =
-        apiService.createParkingLot(parkingLot)
+    override suspend fun createParkingLot(parkingLot: ParkingLotToRequest): Response<String> =
+        apiService.createParkingLot("Bearer ${dataStore.getAuthToken()}", parkingLot)
 
     override suspend fun updateParkingLot(parkingLot: ParkingLot): Response<String> =
         apiService.updateParkingLot(parkingLot)
@@ -25,10 +27,9 @@ class DefaultParkingRepository @Inject constructor(
         apiService.fetchParkingLots("Bearer ${dataStore.getAuthToken()}")
 
     override suspend fun getParkingSpots(
-        token: String?,
         parkingNme: String,
         levelName: String
-    ): Response<ParkingLot> = apiService.getParkingSpots(dataStore.getAuthToken(), parkingNme, levelName)
+    ): Response<List<Spot>> = apiService.getParkingSpots(dataStore.getAuthToken(), parkingNme, levelName)
 
     override suspend fun takeUpSpot(
         token: String?,

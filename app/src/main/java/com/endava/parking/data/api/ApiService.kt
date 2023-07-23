@@ -1,6 +1,8 @@
 package com.endava.parking.data.api
 
 import com.endava.parking.data.model.ParkingLot
+import com.endava.parking.data.model.ParkingLotToRequest
+import com.endava.parking.data.model.Spot
 import com.endava.parking.data.model.User
 import retrofit2.Response
 import retrofit2.http.Body
@@ -28,7 +30,7 @@ interface ApiService {
         @Header("Authorization") token: String?,
         @Query("lotName") parkingLotName: String,
         @Query("levelName") levelName: String
-    ): Response<ParkingLot>
+    ): Response<List<Spot>>
 
     @POST("api/ParkingSpots/createbyuser")
     suspend fun takeUpSpot(
@@ -41,7 +43,7 @@ interface ApiService {
     suspend fun fetchParkingLots(@Header("Authorization") token: String): Response<List<ParkingLot>>
 
     @GET("api/create_parking_lots")
-    suspend fun createParkingLot(parkingLot: ParkingLot): Response<String>
+    suspend fun createParkingLot(token: String, parkingLot: ParkingLotToRequest): Response<String>
 
     @GET("api/update_parking_lots")
     suspend fun updateParkingLot(parkingLot: ParkingLot): Response<String>

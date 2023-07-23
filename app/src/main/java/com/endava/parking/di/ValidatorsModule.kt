@@ -1,6 +1,8 @@
 package com.endava.parking.di
 
 import com.endava.parking.utils.EmailValidator
+import com.endava.parking.utils.LotDetailsValidator
+import com.endava.parking.utils.LotLevelsValidator
 import com.endava.parking.utils.NameValidator
 import com.endava.parking.utils.PasswordValidator
 import com.endava.parking.utils.PhoneValidator
@@ -30,4 +32,12 @@ abstract class ValidatorsModule {
     @Binds
     @Named("Phone")
     abstract fun bindPhoneValidator(phoneValidator: PhoneValidator): Validator
+
+    @Binds
+    @Named("LotDetails")
+    abstract fun bindLotDetailsValidator(lotDetailsValidator: LotDetailsValidator): Validator
+
+    @Binds
+    @Named("LevelsCapacity")
+    abstract fun bindLotLevelsCapacityValidator(lotLevelsCapacityValidator: LotLevelsValidator): Validator
 }

@@ -29,7 +29,7 @@ class SignUpErrorHandler(private val binding: FragmentSignUpBinding) {
                             showError(inputPasswordLayout, it.errorMessage)
                             inputPasswordLayout.errorIconDrawable = null
                         }
-                    }
+                    } else -> {}
                 }
             }
         }

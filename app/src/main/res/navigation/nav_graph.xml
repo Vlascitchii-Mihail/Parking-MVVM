@@ -54,20 +54,29 @@
         android:label="Parking Lots"
         tools:layout="@layout/fragment_parking_lots">
         <action
-            android:id="@+id/action_parkingLotsFragment_to_mockFragment"
-            app:destination="@id/mockFragment"/>
+            android:id="@+id/action_parkingLots_to_tabsFragment"
+            app:destination="@+id/tabsFragment"/>
+        <action
+            android:id="@+id/action_parkingLots_to_createParkingFragment"
+            app:destination="@+id/createParkingFragment"/>
         <argument
             android:name="userrole"
             app:argType="com.endava.parking.data.model.UserRole"/>
     </fragment>
 
     <fragment
-        android:id="@+id/mockFragment"
-        android:name="com.endava.parking.ui.mockscreen.MockFragment"
-        android:label="Mock Fragment"
-        tools:layout="@layout/fragment_mock">
+        android:id="@+id/tabsFragment"
+        android:name="com.endava.parking.ui.tabs.TabsFragment"
+        android:label="Tabs Fragment"
+        tools:layout="@layout/fragment_tabs">
         <argument
-            android:name="parkinglot"
-            app:argType="com.endava.parking.data.model.ParkingLot"/>
+            android:name="intent"
+            app:argType="com.endava.parking.ui.tabs.NavigationIntent"/>
     </fragment>
+
+    <fragment
+        android:id="@+id/createParkingFragment"
+        android:name="com.endava.parking.ui.createparkinglot.FragmentCreateParkingLot"
+        android:label="Create Parking"
+        tools:layout="@layout/fragment_create_parking"/>
 </navigation>

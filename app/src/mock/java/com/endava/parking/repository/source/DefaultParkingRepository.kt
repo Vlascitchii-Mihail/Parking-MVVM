@@ -3,11 +3,30 @@ package com.endava.parking.repository.source
 import com.endava.parking.data.ParkingRepository
 import com.endava.parking.data.model.ParkingLevel
 import com.endava.parking.data.model.ParkingLot
+import com.endava.parking.data.model.ParkingLotToRequest
+import com.endava.parking.data.model.Spot
+import com.endava.parking.data.model.SpotType
 import retrofit2.Response
 import javax.inject.Inject
 
 class DefaultParkingRepository @Inject constructor(): ParkingRepository {
 
+    val spots = listOf<Spot>(
+        Spot(0, "A-002", SpotType.DISABLED_PERSON, false),
+        Spot(0, "A-003", SpotType.REGULAR, false),
+        Spot(0, "A-004", SpotType.REGULAR, true),
+        Spot(0, "A-005", SpotType.REGULAR, true),
+        Spot(0, "A-006", SpotType.FAMILY, true),
+        Spot(0, "A-007", SpotType.FAMILY, true),
+        Spot(0, "A-008", SpotType.REGULAR, true),
+        Spot(0, "A-009", SpotType.TEMPORARY_CLOSED, true),
+        Spot(0, "A-010", SpotType.DISABLED_PERSON, true),
+        Spot(0, "A-011", SpotType.REGULAR, true),
+        Spot(0, "A-012", SpotType.TEMPORARY_CLOSED, true),
+        Spot(0, "A-013", SpotType.DISABLED_PERSON, true),
+        Spot(0, "A-014", SpotType.REGULAR, true),
+        Spot(0, "A-015", SpotType.TEMPORARY_CLOSED, true),
+    )
     val data: ArrayList<ParkingLot> = arrayListOf(
         ParkingLot(
             id = "0",
@@ -359,7 +378,11 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
         )
     )
 
-    override suspend fun createParkingLot(parkingLot: ParkingLot): Response<String> {
+//    override suspend fun createParkingLot(parkingLot: ParkingLot): Response<String> {
+//        return Response.success("Parking ${parkingLot.name} was create")
+//    }
+
+    override suspend fun createParkingLot(parkingLot: ParkingLotToRequest): Response<String> {
         return Response.success("Parking ${parkingLot.name} was create")
     }
 
@@ -376,12 +399,12 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
     }
 
     override suspend fun getParkingSpots(
-        token: String?,
         parkingNme: String,
         levelName: String
-    ): Response<ParkingLot> {
-        return Response.success(this.data.first { it.name == parkingNme })
+    ): Response<List<Spot>> {
+        return Response.success(this.spots)
     }
+
 
     override suspend fun takeUpSpot(
         token: String?,
