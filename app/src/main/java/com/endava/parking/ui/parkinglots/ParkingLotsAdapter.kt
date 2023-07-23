@@ -18,8 +18,6 @@ class ParkingLotsAdapter(
     private val onListItemClickListener: (ParkingLot) -> Unit
 ) : ListAdapter<ParkingLot, ParkingLotsAdapter.ViewHolder>(ListItemCallback()) {
 
-//    private lateinit var binding: ItemParkingLotBinding
-
     class ListItemCallback : DiffUtil.ItemCallback<ParkingLot>() {
         override fun areItemsTheSame(oldItem: ParkingLot, newItem: ParkingLot): Boolean {
             return oldItem.name == newItem.name
@@ -62,9 +60,15 @@ class ParkingLotsAdapter(
                 parkingLotOpenDays.isVisible = !(item.isClosed == true || item.isNonStop == true)
 
                 /** Open Days - Black color for working days, Red color not working days */
-                item.isNonStop?.let {
-                    parkingLotOpenDays.colorWorkingDays(item.days, Color.RED, it)
+                parkingLotOpenDays.text = ""        // For right refreshing item, on reusable
+                if (item.isClosed != true || item.isNonStop != true) {
+                    parkingLotOpenDays.text = root.resources.getString(R.string.parking_lot_working_days)
                 }
+                parkingLotOpenDays.colorWorkingDays(
+                    item.days,
+                    Color.RED,
+                    item.isNonStop == true
+                )
 
                 /** Availability Indicator */
                 availabilityIndicator.setTemporaryClosedMode(item.isClosed == true)

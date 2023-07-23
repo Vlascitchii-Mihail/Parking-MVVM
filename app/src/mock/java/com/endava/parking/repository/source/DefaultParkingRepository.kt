@@ -13,8 +13,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "0",
             name = "Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogochdfsfgkjgdffdqwertyuioplkflyflyflyfly",
             address = "Some Address",
-            startHour = "18:00",
-            endHour = "08:00",
+            startHour = "10:25",
+            endHour = "08:45",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -28,13 +28,7 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "1",
             name = "Endava 777",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
-            days = listOf(
-                "Monday",
-                "Tuesday",
-                "Wednesday"
-            ),
+            isClosed = true,
             levels = listOf(
                 ParkingLevel("Level A", 60),
                 ParkingLevel("Level B", 40)
@@ -65,8 +59,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "4",
             name = "Endava Tower North",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "07:25",
+            endHour = "23:55",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -84,8 +78,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "5",
             name = "METRO Cahul",
             address = "Some Address",
-            startHour = "08:00",
-            endHour = "20:00",
+            startHour = "05:10",
+            endHour = "23:12",
             days = listOf(
                 "Monday",
                 "Wednesday",
@@ -101,8 +95,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "6",
             name = "Terminal Parking Lot",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "06:20",
+            endHour = "23:40",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -138,8 +132,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "9",
             name = "Plaza Palace",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "07:50",
+            endHour = "21:40",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -157,8 +151,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "10",
             name = "Fourchette-1 Parking",
             address = "Some Address",
-            startHour = "08:00",
-            endHour = "20:00",
+            startHour = "08:12",
+            endHour = "20:36",
             days = listOf(
                 "Monday",
                 "Wednesday",
@@ -174,8 +168,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "11",
             name = "Endava Tower Parking Lot",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "02:25",
+            endHour = "07:25",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -191,7 +185,7 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "12",
             name = "Kaufland",
             address = "Some Address",
-            isNonStop = true,
+            isClosed = true,
             levels = listOf(
                 ParkingLevel("Level A", 120)
             ),
@@ -201,8 +195,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "13",
             name = "N1 Hypermarket Parking Lot",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "06:10",
+            endHour = "20:55",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -218,8 +212,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "14",
             name = "Endava London",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "10:30",
+            endHour = "23:30",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -254,16 +248,9 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "16",
             name = "Terminal-12 Parking Lot",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
-            days = listOf(
-                "Monday",
-                "Tuesday",
-                "Wednesday"
-            ),
+            isClosed = true,
             levels = listOf(
-                ParkingLevel("Level A", 60),
-                ParkingLevel("Level B", 40)
+                ParkingLevel("Level A", 60)
             ),
             occupiedSeats = 16.28F
         ),
@@ -281,8 +268,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "18",
             name = "N5 Hypermarket Parking Lot",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "08:00",
+            endHour = "22:00",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -296,8 +283,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "19",
             name = "Plaza Balti Palace",
             address = "Some Address",
-            startHour = "10:00",
-            endHour = "23:00",
+            startHour = "07:00",
+            endHour = "23:30",
             days = listOf(
                 "Monday",
                 "Tuesday",
@@ -315,8 +302,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
             id = "20",
             name = "Fourchette-2 Parking",
             address = "Some Address",
-            startHour = "08:00",
-            endHour = "20:00",
+            startHour = "08:20",
+            endHour = "20:20",
             days = listOf(
                 "Monday",
                 "Wednesday",
@@ -327,6 +314,48 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
                 ParkingLevel("Level A", 120)
             ),
             occupiedSeats = 31.22223F
+        ),
+        ParkingLot(
+            id = "21",
+            name = "Angry Birds Parking",
+            address = "Some Address",
+            startHour = "04:00",
+            endHour = "08:00",
+            days = listOf(
+                "Monday",
+                "Saturday"
+            ),
+            levels = listOf(
+                ParkingLevel("Level A", 15),
+                ParkingLevel("Level B", 80)
+            ),
+            occupiedSeats = 60.28F
+        ),
+        ParkingLot(
+            id = "22",
+            name = "Piata Centrala Ialoveni",
+            address = "Some Address",
+            isNonStop = true,
+            levels = listOf(
+                ParkingLevel("Level A", 60)
+            ),
+            occupiedSeats = 32.28F
+        ),
+        ParkingLot(
+            id = "23",
+            name = "Firtness Centru",
+            address = "Some Address",
+            startHour = "10:00",
+            endHour = "23:00",
+            days = listOf(
+                "Monday",
+                "Wednesday",
+                "Friday"
+            ),
+            levels = listOf(
+                ParkingLevel("Level A", 60)
+            ),
+            occupiedSeats = 60.28F
         )
     )
 
