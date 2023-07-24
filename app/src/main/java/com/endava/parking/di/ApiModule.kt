@@ -13,6 +13,7 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.net.CookieManager
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
@@ -31,7 +32,8 @@ class ApiModule {
     fun provideApi(@Named("baseUrl") baseUrl: String): ApiService =
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().setExclusionStrategies().create()))
             .client(createOkHttpClient(MainInterceptor()))
             .build()
             .create(ApiService::class.java)

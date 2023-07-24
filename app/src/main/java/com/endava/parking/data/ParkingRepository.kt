@@ -7,13 +7,14 @@ import com.endava.parking.data.model.User
 
 interface ParkingRepository {
 
-    suspend fun createParkingLot(parkingLot: ParkingLot): Response<String>
 
     suspend fun updateParkingLot(parkingLot: ParkingLot): Response<String>
 
-    suspend fun deleteParkingLot(id: String): Response<String>
+    suspend fun createParkingLot(parkingLot: ParkingLot): Response<String>
 
     suspend fun fetchParkingLots(): Response<List<ParkingLot>>
+
+    suspend fun deleteParkingLot(token: String, parkingLotName: String): Response<String>
 
     suspend fun getParkingSpots(token: String?, parkingNme: String, levelName: String): Response<ParkingLot>
 

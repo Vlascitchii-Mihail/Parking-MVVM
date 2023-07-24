@@ -30,6 +30,7 @@ class SignUpErrorHandler(private val binding: FragmentSignUpBinding) {
                             inputPasswordLayout.errorIconDrawable = null
                         }
                     }
+                    else -> {}
                 }
             }
         }

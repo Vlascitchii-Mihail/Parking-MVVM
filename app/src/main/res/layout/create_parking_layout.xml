@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusableInTouchMode="true"
+    android:paddingBottom="@dimen/add_level_padding">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_parking_name_layout"
+        style="@style/TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:hint="@string/signup_name_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_parking_name"
+            style="@style/Input.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lot_admin_hint"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_parking_address_layout"
+        style="@style/TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
+        android:hint="@string/lot_admin_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_parking_name_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_parking_address"
+            style="@style/Input.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lot_admin_address_hint"
+            android:imeOptions="actionNext"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_parking_op_hours_layout"
+        style="@style/TextInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_large"
+        android:hint="@string/lot_admin_operating_hours_up_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_parking_address_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_parking_op_hours"
+            style="@style/Input.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:hint="@string/lot_admin_operating_hours_hint"
+            android:imeOptions="actionNext"
+            android:inputType="time" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_is_non_stop"
+        style="@style/CheckboxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_is_operates_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/input_parking_op_hours_layout" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_temp_closed"
+        style="@style/CheckboxStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="@string/lot_admin_temp_closed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_is_non_stop" />
+
+    <com.endava.parking.ui.createparkinglot.CheckDaysView
+        android:id="@+id/parking_working_days"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_temp_closed" />
+
+    <View
+        android:id="@+id/view_parking_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@color/sonic_silver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/parking_working_days" />
+
+    <com.endava.parking.ui.createparkinglot.LevelsView
+        android:id="@+id/ll_parking_levels_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_medium"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_parking_line"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_add_level"
+        style="@style/Text.Button.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_add_level"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_parking_levels_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

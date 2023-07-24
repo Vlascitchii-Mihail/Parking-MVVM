@@ -124,12 +124,38 @@
         <item name="android:textSize">@dimen/text_medium_extra</item>
     </style>
 
+    <style name="Text.TextSmallGray">
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
 
     <!--    TextButton style-->
-    <style name="ButtonText" parent="Widget.Material3.Button.TextButton">
-        <item name="android:fontFamily">@font/mulish_300</item>
+    <style name="Text.Button" parent="Widget.Material3.Button.TextButton">
         <item name="android:textSize">@dimen/text_small</item>
-        <item name="android:textColor">@color/black_80</item>
+        <item name="android:textColor">@color/tint_add_level_button</item>
+    </style>
+
+    <style name="Text.Button.Light">
+        <item name="android:fontFamily">@font/mulish_300</item>
+    </style>
+
+    <style name="Text.Button.Bold">
+        <item name="android:fontFamily">@font/mulish_700</item>
+    </style>
+
+
+<!--    Checkbox style-->
+    <style name="CheckboxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="theme">@style/MyCheckboxColor</item>
+        <item name="android:textColor">@color/dark_gray</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:fontFamily">@font/mulish_400</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="MyCheckboxColor" parent="Theme.AppCompat.Light">
+        <item name="colorAccent">@color/pomegranate</item>
+        <item name="android:textColorSecondary">@color/black_38</item>
     </style>
 
 
@@ -157,6 +183,10 @@
 
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
+
+    <style name="PopupDialog">
+        <item name="android:background">@drawable/pop_up_background</item>
     </style>
 
 </resources>

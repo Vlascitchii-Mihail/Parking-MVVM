@@ -33,6 +33,10 @@
     <dimen name="spot_icon_radius">28dp</dimen>
     <dimen name="imv_sheet_type_height">24dp</dimen>
     <dimen name="spn_levels_height">20dp</dimen>
+    <dimen name="add_level_padding">25dp</dimen>
+    <dimen name="chb_height">19dp</dimen>
+    <dimen name="chb_width">33dp</dimen>
+    <dimen name="chb_margin_start">11dp</dimen>
 
     <!--    Stroke-->
     <dimen name="stroke_tiny">1dp</dimen>

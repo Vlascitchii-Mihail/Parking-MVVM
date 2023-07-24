@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_sunday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_sunday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_sun"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_sunday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_sunday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_sunday" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_monday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintStart_toEndOf="@+id/chb_parking_sunday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_text_monday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_mon"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_monday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_monday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_monday" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_tuesday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintStart_toEndOf="@+id/chb_parking_monday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_text_tuesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_tues"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_tuesday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_tuesday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_tuesday" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_wednesday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintStart_toEndOf="@+id/chb_parking_tuesday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_text_wednesday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_wednes"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_wednesday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_wednesday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_wednesday" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_thursday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintStart_toEndOf="@+id/chb_parking_wednesday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_text_thursday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_thurs"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_thursday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_thursday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_thursday" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_friday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintStart_toEndOf="@+id/chb_parking_thursday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txv_parking_text_friday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_fri"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_friday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_friday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_friday" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/chb_parking_saturday"
+        android:layout_width="@dimen/chb_width"
+        android:layout_height="@dimen/chb_height"
+        android:layout_marginStart="@dimen/chb_margin_start"
+        style="@style/CheckboxStyle"
+        app:layout_constraintStart_toEndOf="@+id/chb_parking_friday"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_parking_text_saturday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="@string/lot_admin_sun"
+        app:layout_constraintEnd_toEndOf="@id/chb_parking_saturday"
+        app:layout_constraintStart_toStartOf="@id/chb_parking_saturday"
+        app:layout_constraintTop_toBottomOf="@id/chb_parking_saturday" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,5 +4,8 @@ enum class InputTextType {
     NAME,
     EMAIL,
     PASSWORD,
-    PHONE
+    PHONE,
+    ADDRESS,
+    SPOTS,
+    TIME
 }

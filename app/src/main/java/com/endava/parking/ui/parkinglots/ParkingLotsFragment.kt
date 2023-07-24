@@ -105,7 +105,8 @@ class ParkingLotsFragment : BaseFragment<FragmentParkingLotsBinding>(FragmentPar
             if (userRole == UserRole.ADMIN) {
                 fab.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_fab_plus))
                 fab.setOnClickListener {
-                    requireContext().showLongToast("Create Parking !") // TODO replace with navigation to Create Parking
+                    val action = ParkingLotsFragmentDirections.actionParkingLotsFragmentToFragmentCreateParkingLot(userRole)
+                    findNavController().navigate(action)
                 }
             }
             if (userRole == UserRole.REGULAR) {

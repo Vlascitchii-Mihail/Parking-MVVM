@@ -13,16 +13,17 @@ class DefaultParkingRepository @Inject constructor(
 ) : ParkingRepository {
 
     override suspend fun createParkingLot(parkingLot: ParkingLot): Response<String> =
-        apiService.createParkingLot(parkingLot)
+        apiService.createParkingLot("Bearer ${dataStore.getAuthToken()}", parkingLot)
 
     override suspend fun updateParkingLot(parkingLot: ParkingLot): Response<String> =
         apiService.updateParkingLot(parkingLot)
 
-    override suspend fun deleteParkingLot(id: String): Response<String> =
-        apiService.deleteParkingLot(id)
-
     override suspend fun fetchParkingLots(): Response<List<ParkingLot>> =
         apiService.fetchParkingLots("Bearer ${dataStore.getAuthToken()}")
+
+    override suspend fun deleteParkingLot(token: String, parkingLotName: String): Response<String> {
+        TODO("Not yet implemented")
+    }
 
     override suspend fun getParkingSpots(
         token: String?,
