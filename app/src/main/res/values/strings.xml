@@ -37,7 +37,7 @@
     <string name="restore_title">Restore Password</string>
     <string name="restore_action">Submit</string>
     <string name="restore_success_notification">A new password has been sent to your email</string>
-    <string name="restore_instruction">Please enter the email that you originally registered your  account with. You will receive an email with instructions on how you can change your password.</string>
+    <string name="restore_instruction">Please enter the email that you originally registered your account with. You will receive an email with new password</string>
 
     <!--    Validation, error messages-->
     <string name="error_message_name">Name must be between 1 and 30 characters and accept only alpha characters</string>
