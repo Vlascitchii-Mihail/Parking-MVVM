@@ -99,7 +99,7 @@ class SignUpViewModel @Inject constructor(
             InputState(
                 fieldType = InputTextType.NAME,
                 isValid = nameValidator.validate(user.name),
-                errorMessage = chooseNameErrorMessage(user.name)),
+                errorMessage = R.string.error_message_name),
             InputState(
                 fieldType = InputTextType.EMAIL,
                 isValid = emailValidator.validate(user.email),
@@ -107,26 +107,12 @@ class SignUpViewModel @Inject constructor(
             InputState(
                 fieldType = InputTextType.PASSWORD,
                 isValid = passwordValidator.validate(user.password),
-                errorMessage = choosePasswordErrorMessage(user.password)),
+                errorMessage = R.string.generic_pass_error_message),
             InputState(
                 fieldType = InputTextType.PHONE,
                 isValid = phoneValidator.validate(user.phone),
                 errorMessage = choosePhoneErrorMessage(user.phone))
             )
-    }
-
-    private fun chooseNameErrorMessage(name: String): Int {
-        if (name.length > 30) {
-            return R.string.error_message_name_length_higher
-        }
-        return R.string.error_message_name_non_alpha
-    }
-
-    private fun choosePasswordErrorMessage(password: String): Int {
-        if (password.length < 5 || password.length > 10) {
-            return R.string.generic_pass_error_message
-        }
-        return R.string.generic_pass_content_error_message
     }
 
     private fun choosePhoneErrorMessage(phone: String): Int {

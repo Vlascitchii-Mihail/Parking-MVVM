@@ -10,8 +10,7 @@
     <string name="generic_terms_conditions">By proceeding you agree\nto our Terms and Conditions</string>
     <string name="generic_terms_conditions_phrase">Terms and Conditions</string>
     <string name="generic_email_error_message">Should contain username, @ and domain name</string>
-    <string name="generic_pass_error_message">Password must be between 5 and 10 characters</string>
-    <string name="generic_pass_content_error_message">Password should contain at least one digit, one upper case, one symbol</string>
+    <string name="generic_pass_error_message">Password must be between 5 and 10 characters and contain at least one digit, one upper case, one symbol</string>
 
     <!--    WelcomeFragment screen-->
     <string name="welcome_create_account_action">Create Account</string>
@@ -41,8 +40,7 @@
     <string name="restore_instruction">Please enter the email that you originally registered your  account with. You will receive an email with instructions on how you can change your password.</string>
 
     <!--    Validation, error messages-->
-    <string name="error_message_name_length_higher">Name must be between 1 and 30 characters</string>
-    <string name="error_message_name_non_alpha">Name should accept only alpha characters</string>
+    <string name="error_message_name">Name must be between 1 and 30 characters and accept only alpha characters</string>
     <string name="error_message_email">Email doesn`t match the conditions</string>
     <string name="error_message_phone_8_digits">Phone must have 8 digits</string>
     <string name="error_message_phone_only_digits">Phone should accept only digits </string>
