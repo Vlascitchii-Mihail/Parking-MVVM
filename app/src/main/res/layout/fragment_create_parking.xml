@@ -25,15 +25,15 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:orientation="vertical">
 
             <include
                 android:id="@+id/create_parking_container"
                 layout="@layout/create_parking_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/margin_large" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_large"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_lot_admin_confirm"
