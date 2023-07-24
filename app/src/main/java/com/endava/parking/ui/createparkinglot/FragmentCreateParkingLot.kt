@@ -80,22 +80,14 @@ class FragmentCreateParkingLot : BaseFragment<FragmentCreateParkingBinding>(Frag
             parkingWorkingDays.setDaysCheckBoxesAvailability(isChecked)
 
             if (isChecked) {
-                //reset time in the inputParkingOpHours
-                inputParkingOpHours.setText(
-                    getString(
-                        R.string.lot_admin_operating_hours,
-                        INIT_START_TIME,
-                        INIT_END_TIME
-                    )
-                )
                 inputParkingOpHoursLayout.error = null
                 viewModel.startTime = INIT_START_TIME
                 viewModel.endTime = INIT_END_TIME
                 inputParkingOpHours.isEnabled = false
-
+                timePickerHandler.disableTimeValidation(true)
             } else {
+                timePickerHandler.disableTimeValidation(false)
                 inputParkingOpHours.isEnabled = true
-                inputParkingOpHours.setText("")
             }
             checkConfirmBtnState()
         }

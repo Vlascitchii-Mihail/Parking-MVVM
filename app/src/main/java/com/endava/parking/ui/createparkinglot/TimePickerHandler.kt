@@ -10,7 +10,7 @@ class TimePickerHandler(private val fragment: Fragment) {
     private val endTimePicker = getTimePicker(fragment.requireContext(), FragmentCreateParkingLot.REQUEST_END_TIME)
     private val startTimeKeeper = mutableListOf<Int>()
     private val endTimeKeeper = mutableListOf<Int>()
-    private var first = true
+    private var isTimeStatusDisabled: Boolean = true
 
     fun showTimePicker() {
         startTimePicker.show(
@@ -43,7 +43,6 @@ class TimePickerHandler(private val fragment: Fragment) {
                 endTimeKeeper.add(this.hour)
                 endTimeKeeper.add( this.minute)
                 clearFocus.invoke()
-                first = true
                 setTime(returnTimeMapped())
             }
 
@@ -77,6 +76,10 @@ class TimePickerHandler(private val fragment: Fragment) {
      */
     fun getValidationTimeStatus(): Boolean {
         return if (startTimeKeeper.isEmpty() && endTimeKeeper.isEmpty()) true
-            else startTimeKeeper.first() < endTimeKeeper.first()
+            else startTimeKeeper.first() < endTimeKeeper.first() || isTimeStatusDisabled
+    }
+
+    fun disableTimeValidation(isEnabled: Boolean) {
+        this.isTimeStatusDisabled = isEnabled
     }
 }
