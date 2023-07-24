@@ -20,7 +20,7 @@ class ParkingLotsAdapter(
 
     class ListItemCallback : DiffUtil.ItemCallback<ParkingLot>() {
         override fun areItemsTheSame(oldItem: ParkingLot, newItem: ParkingLot): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.name == newItem.name
         }
 
         override fun areContentsTheSame(oldItem: ParkingLot, newItem: ParkingLot): Boolean {
@@ -29,8 +29,11 @@ class ParkingLotsAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding =
-            ItemParkingLotBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemParkingLotBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return ViewHolder(binding)
     }
 
@@ -57,13 +60,27 @@ class ParkingLotsAdapter(
                 parkingLotOpenDays.isVisible = !(item.isClosed == true || item.isNonStop == true)
 
                 /** Open Days - Black color for working days, Red color not working days */
-                item.isNonStop?.let {
-                    parkingLotOpenDays.colorWorkingDays(item.days, Color.RED, it)
+                parkingLotOpenDays.text = ""        // For right refreshing item, on reusable
+                if (item.isClosed != true || item.isNonStop != true) {
+                    parkingLotOpenDays.text = root.resources.getString(R.string.parking_lot_working_days)
                 }
+                parkingLotOpenDays.colorWorkingDays(
+                    item.days,
+                    Color.RED,
+                    item.isNonStop == true
+                )
 
                 /** Availability Indicator */
                 availabilityIndicator.setTemporaryClosedMode(item.isClosed == true)
-                availabilityIndicator.changeLevel(item.occupiedSeats.toInt())
+
+                /** Server can return unacceptable value (more than 100%), we need to insure value */
+                availabilityIndicator.changeLevel(
+                    if (item.occupiedSeats > 100) {
+                        100
+                    } else {
+                        item.occupiedSeats.toInt()
+                    }
+                )
 
                 /** ArrowIcon */
                 parkingLotArrowIcon.isVisible = !(userRole == UserRole.REGULAR && item.isClosed == true)

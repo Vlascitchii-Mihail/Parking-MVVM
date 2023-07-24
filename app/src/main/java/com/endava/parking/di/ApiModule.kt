@@ -1,7 +1,6 @@
 package com.endava.parking.di
 
 import com.endava.parking.data.api.ApiService
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -14,7 +13,6 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.net.CookieHandler
 import java.net.CookieManager
 import java.util.concurrent.TimeUnit
 import javax.inject.Named

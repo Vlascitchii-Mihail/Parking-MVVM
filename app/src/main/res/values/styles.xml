@@ -54,6 +54,22 @@
         <item name="android:fontFamily">@font/mulish_400</item>
     </style>
 
+    <!--    Parking search input style-->
+    <style name="Input.Secondary">
+        <item name="android:paddingHorizontal">@dimen/padding_medium</item>
+        <!--    text color for big hints-->
+        <item name="android:textColorHint">@color/tint_example_hint</item>
+        <!--    fontFamily for both small hint and big hint-->
+        <item name="android:fontFamily">@font/mulish_400</item>
+        <!--    textSize for both text and big hint-->
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="boxStrokeColor">@color/black</item>
+        <!--    Corner radius-->
+        <item name="boxCornerRadiusTopStart">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/corner_radius</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/corner_radius</item>
+    </style>
 
     <!--    TextInputLayout style-->
     <style name="TextInputLayout">

@@ -1,7 +1,6 @@
 package com.endava.parking.ui.signup
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.endava.parking.R
@@ -11,6 +10,7 @@ import com.endava.parking.data.model.User
 import com.endava.parking.data.model.UserRole
 import com.endava.parking.ui.utils.InputState
 import com.endava.parking.ui.utils.InputTextType
+import com.endava.parking.ui.utils.SingleEventLiveData
 import com.endava.parking.utils.Validator
 import com.endava.parking.utils.getUserRole
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -28,19 +28,19 @@ class SignUpViewModel @Inject constructor(
     private val defaultAuthDataStore: DefaultAuthDataStore
 ) : ViewModel() {
 
-    private val _navigateToParkingLots = MutableLiveData<UserRole>()
+    private val _navigateToParkingLots = SingleEventLiveData<UserRole>()
     val navigateToParkingLots: LiveData<UserRole> = _navigateToParkingLots
 
-    private val _inputStates = MutableLiveData<List<InputState>>()
+    private val _inputStates = SingleEventLiveData<List<InputState>>()
     val inputStates: LiveData<List<InputState>> = _inputStates
 
-    private val _buttonEnableState = MutableLiveData<Boolean>()
+    private val _buttonEnableState = SingleEventLiveData<Boolean>()
     val buttonEnableState: LiveData<Boolean> = _buttonEnableState
 
-    private val _errorMessage = MutableLiveData<Int>()
+    private val _errorMessage = SingleEventLiveData<Int>()
     val errorMessage: LiveData<Int> = _errorMessage
 
-    private val _serverErrorMessage = MutableLiveData<String>()
+    private val _serverErrorMessage = SingleEventLiveData<String>()
     val serverErrorMessage: LiveData<String> = _serverErrorMessage
 
     fun validateUser(user: User) {

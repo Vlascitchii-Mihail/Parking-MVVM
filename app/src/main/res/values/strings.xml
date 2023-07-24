@@ -54,7 +54,7 @@
     <string name="parking_lot_start_hour">06:00</string>
     <string name="parking_lot_end_hour">24:00</string>
     <string name="parking_lot_hint_open_hours">18:00 – 23:00</string>
-    <string name="parking_lot_hint_open_days">S/M/T/W/T/F/S</string>
+    <string name="parking_lot_working_days">S/M/T/W/T/F/S</string>
     <string name="parking_lot_24_7">24/7</string>
     <string name="parking_lot_not_available">Temporary not available</string>
     <string name="parking_lot_search">Search Parking</string>
@@ -62,6 +62,7 @@
     <string name="parking_lot_vacate">Vacate</string>
     <string name="parking_lot_wrong_qr_error_message">Wrong QR code !</string>
     <string name="parking_lot_currently_parked">You are currently parked on spot</string>
+    <string name="parking_lots_search_empty">Sorry we were not able to find any parking lots based on your query</string>
 
     <!--    Server's Error messages-->
     <string name="something_wrong_happened">Something wrong happened</string>

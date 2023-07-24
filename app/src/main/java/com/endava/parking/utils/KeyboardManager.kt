@@ -1,32 +1,30 @@
 package com.endava.parking.utils
 
-import android.graphics.Rect
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewTreeObserver
-import kotlin.math.roundToInt
-
-private const val ROUNDING_CONST = 50F
 
 class KeyboardManager(private val root: View) {
 
     private var globalLayoutListener : ViewTreeObserver.OnGlobalLayoutListener? = null
 
-    fun setOnCloseActionListener(closeListener: () -> Unit) {
+    fun setOnStateChangeActionListener(
+        openListener: (() -> Unit)? = null,
+        closeListener: (() -> Unit)? = null
+    ) {
         globalLayoutListener = ViewTreeObserver.OnGlobalLayoutListener {
-            if (!isKeyboardOpen()) {
-                closeListener.invoke()
-            }
+            if (isKeyboardOpen())
+                openListener?.invoke()
+            else
+                closeListener?.invoke()
         }
+
         root.viewTreeObserver.addOnGlobalLayoutListener(globalLayoutListener)
     }
 
     private fun isKeyboardOpen(): Boolean {
-        val visibleBounds = Rect()
-        root.getWindowVisibleDisplayFrame(visibleBounds)
-        val heightDiff = root.height - visibleBounds.height()
-        val marginOfError = this.convertDpToPx(ROUNDING_CONST).roundToInt()
-        return heightDiff > marginOfError
+        val heightDiff = root.rootView.height - root.height
+        return heightDiff > convertDpToPx(200F)
     }
 
     private fun convertDpToPx(dp: Float): Float {
