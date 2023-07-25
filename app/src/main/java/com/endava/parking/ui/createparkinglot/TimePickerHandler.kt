@@ -76,10 +76,11 @@ class TimePickerHandler(private val fragment: Fragment) {
      */
     fun getValidationTimeStatus(): Boolean {
         return if (startTimeKeeper.isEmpty() && endTimeKeeper.isEmpty()) true
-            else startTimeKeeper.first() < endTimeKeeper.first() || isTimeStatusDisabled
+            else startTimeKeeper.first() < endTimeKeeper.first()
     }
 
-    fun disableTimeValidation(isEnabled: Boolean) {
-        this.isTimeStatusDisabled = isEnabled
+    fun resetTime() {
+        startTimeKeeper.clear()
+        endTimeKeeper.clear()
     }
 }

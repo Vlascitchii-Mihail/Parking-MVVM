@@ -134,7 +134,7 @@
     <string name="lot_admin_create_lot_toolbar">Create Parking Lot</string>
     <string name="lot_admin_operating_hours_hint">HH:MM - HH:MM</string>
     <string name="lot_admin_operating_hours">%1s\ - %2s</string>
-    <string name="lot_admin_error">Should contain 2\-70 characters</string>
+    <string name="lot_admin_error">Should contain 2\-70 characters, should not start with a space</string>
     <string name="lot_admin_error_levels">Should contain 1\-3 digits, first digit can\'t be 0, max 150</string>
     <string name="lot_admin_time_delimitation">The end time must be greater than the start time</string>
     <string name="lot_admin_parking_positive_message">Parking lot was successfully created!</string>

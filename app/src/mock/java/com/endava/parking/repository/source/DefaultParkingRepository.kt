@@ -367,8 +367,8 @@ class DefaultParkingRepository @Inject constructor(): ParkingRepository {
         return Response.success("Parking ${parkingLot.name} was updated")
     }
 
-    override suspend fun deleteParkingLot(parkingLotId: String): Response<String> {
-        return Response.success("Parking $parkingLotId was deleted")
+    override suspend fun deleteParkingLot(parkingLotName: String): Response<String> {
+        return Response.success("Parking $parkingLotName was deleted")
     }
 
     override suspend fun fetchParkingLots(): Response<List<ParkingLot>> {

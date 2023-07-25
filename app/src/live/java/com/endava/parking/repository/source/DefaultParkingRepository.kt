@@ -21,7 +21,7 @@ class DefaultParkingRepository @Inject constructor(
     override suspend fun fetchParkingLots(): Response<List<ParkingLot>> =
         apiService.fetchParkingLots("Bearer ${dataStore.getAuthToken()}")
 
-    override suspend fun deleteParkingLot(token: String, parkingLotName: String): Response<String> {
+    override suspend fun deleteParkingLot(parkingLotName: String): Response<String> {
         TODO("Not yet implemented")
     }
 

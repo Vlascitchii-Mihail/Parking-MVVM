@@ -45,5 +45,5 @@ interface ApiService {
     suspend fun updateParkingLot(parkingLot: ParkingLot): Response<String>
 
     @GET("api/delete_parking_lots")
-    suspend fun deleteParkingLot(id: String): Response<String>
+    suspend fun deleteParkingLot(parkingName: String): Response<String>
 }
